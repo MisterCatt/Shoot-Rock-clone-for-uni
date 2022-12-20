@@ -1,14 +1,13 @@
 #include "Player.h"
 
-
-Player::Player()
+Player::Player() : GameObject("Player")
 {
 	texture = LoadTexture("Assets/TestSpin.png");
 
 	rotation = 0;
 
-	position.SetX(800/2);
-	position.SetY(450/2);
+	position.SetX(GetScreenWidth()/2);
+	position.SetY((GetScreenHeight()/3)*2);
 
 	charging = false;
 	chargeTime = 0;
@@ -19,10 +18,10 @@ Player::~Player()
 }
 
 void Player::Update() {
-
-	Input();
-	Charging();
-
+	if (IsActive()) {
+		Input();
+		Charging();
+	}
 }
 
 void Player::Input() {
@@ -59,15 +58,16 @@ void Player::Input() {
 }
 
 void Player::Render() {
-	
-	DrawTexturePro(
-		texture, 
-		Rectangle{ 0.0f, 0.0f, 25, 50}, 
-		Rectangle{ position.x,position.y, 
-		(float)texture.width, (float)texture.height}, 
-		Vector2{(float)texture.width/2, (float)texture.height/2}, 
-		rotation, 
-		WHITE);
+	if (IsActive()) {
+		DrawTexturePro(
+			texture,
+			Rectangle{ 0.0f, 0.0f, 25, 50 },
+			Rectangle{ position.x,position.y,
+			(float)texture.width, (float)texture.height },
+			Vector2{ (float)texture.width / 2, (float)texture.height / 2 },
+			rotation,
+			WHITE);
+	}
 }
 
 void Player::Charging() {

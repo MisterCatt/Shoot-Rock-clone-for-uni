@@ -13,6 +13,9 @@ public:
 	virtual bool IsActive();
 	virtual void SetActive(bool status);
 
+	virtual void SetName(std::string ObjName);
+	virtual std::string GetName();
+
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 

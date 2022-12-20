@@ -3,7 +3,7 @@
 ShootRock::ShootRock()
 {
 	p = new Player();
-
+	p->SetActive(true);
 }
 
 ShootRock::~ShootRock()
