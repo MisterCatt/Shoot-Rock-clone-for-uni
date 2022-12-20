@@ -7,18 +7,14 @@ class GameObject
 {
 
 public:
-	GameObject();
+	GameObject(std::string objName);
 	~GameObject();
 
 	virtual bool IsActive();
 	virtual void SetActive(bool status);
 
-	virtual void RotateCenter(float degrees);
-
-
 	virtual void Update() = 0;
 	virtual void Render() = 0;
-	virtual void Input() = 0;
 
 	virtual void Destroy();
 
@@ -26,7 +22,7 @@ protected:
 
 	Texture texture;
 
-	Position pos;
+	Position position;
 
 	bool active;
 

@@ -6,14 +6,19 @@ class Position
 public:
 	Position();
 	~Position();
+
+	Position(float x, float y);
 	
 	void SetX(float x);
 	void SetY(float y);
 
+	float GetX();
+	float GetY();
+
 	Vector2 GetVector2();
 
-private:
+	float x;
+	float y;
 
-	Vector2 position;
 };
 

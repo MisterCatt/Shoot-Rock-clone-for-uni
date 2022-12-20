@@ -1,7 +1,11 @@
 #include "GameObject.h"
 
-GameObject::GameObject()
+GameObject::GameObject(std::string objName)
 {
+	name = objName;
+
+	active = false;
+
 }
 
 GameObject::~GameObject()
@@ -14,10 +18,6 @@ bool GameObject::IsActive() {
 
 void GameObject::SetActive(bool status) {
 	active = status;
-}
-
-void GameObject::RotateCenter(float degrees) {
-
 }
 
 void GameObject::Destroy() {
