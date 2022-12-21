@@ -18,8 +18,6 @@ public:
 
 private:
 
-	//void Move();
-
 	int bulletTimer;
 
 	float speed;

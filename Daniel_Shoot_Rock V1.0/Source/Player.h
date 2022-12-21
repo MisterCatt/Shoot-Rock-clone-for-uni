@@ -22,6 +22,10 @@ public:
 
 	std::deque<Bullet*> GetBullets();
 
+	void BulletBag();
+
+	Bullet* GetBulletFromBag();
+
 private:
 
 	float rotation, chargeTime;
@@ -30,6 +34,6 @@ private:
 
 	std::deque<Bullet*> bulletsInMotion;
 
-	BulletBag* bulletBag;
+	double newTime, oldTime, dif;
 
 };

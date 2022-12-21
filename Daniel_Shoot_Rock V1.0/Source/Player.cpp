@@ -11,8 +11,6 @@ Player::Player() : GameObject("Player")
 
 	charging = false;
 	chargeTime = 0;
-
-	bulletBag = new BulletBag();
 }
 
 Player::~Player()
@@ -51,15 +49,20 @@ void Player::Input() {
 		position.y++;
 	}
 
-	if (IsKeyDown(KEY_Z)) {
+	if (IsKeyPressed(KEY_Z)) {
+		oldTime = GetTime();
 		charging = true;
 	}
 	if (IsKeyReleased(KEY_Z)) {
-		charging = false;
+		newTime = GetTime();
 
-		if (chargeTime >= 120) {
-			Shoot();
-		}
+		dif = (newTime - oldTime) + 1;
+
+		std::cout << dif << std::endl;
+
+		charging = false;
+		if(dif >= 3)
+		Shoot();
 	}
 }
 
@@ -81,27 +84,41 @@ void Player::Render() {
 }
 
 void Player::Charging() {
-	if (charging == true) {
-		chargeTime++;
-		std::cout << "Charging" << std::endl;
-	}
-	else {
-		chargeTime = 0;
-	}
+	
 }
 
 void Player::Shoot() {
 	std::cout << "Shot" << std::endl;
 
-	Bullet* b = new Bullet();
+	Bullet* b = GetBulletFromBag();
 	b->position.SetX(position.GetX());
 	b->position.SetY(position.GetY() - 5);
+	b->RestartTimer();
 
 	b->SetActive(true);
-
-	bulletsInMotion.push_back(b);
 }
 
 std::deque<Bullet*> Player::GetBullets() {
 	return bulletsInMotion;
+}
+
+void Player::BulletBag() {
+
+}
+
+Bullet* Player::GetBulletFromBag() {
+	if (bulletsInMotion.empty()) {
+		bulletsInMotion.push_back(new Bullet());
+		return bulletsInMotion.at(0);
+	}
+	else {
+		for (int i = 0; i < bulletsInMotion.size(); i++) {
+			if (!bulletsInMotion.at(i)->IsActive()) {
+				return bulletsInMotion.at(i);
+			}
+		}
+		bulletsInMotion.push_back(new Bullet());
+		return bulletsInMotion.back();
+	}
+	return nullptr;
 }
