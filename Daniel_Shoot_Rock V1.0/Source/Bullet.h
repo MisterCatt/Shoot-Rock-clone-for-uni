@@ -10,8 +10,17 @@ public:
 
 	void Update();
 	void Render();
+	void Unload();
 
+	void Destroy();
+
+	void RestartTimer();
 
 private:
 
+	//void Move();
+
+	int bulletTimer;
+
+	float speed;
 };

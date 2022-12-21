@@ -21,11 +21,11 @@ public:
 
 	virtual void Destroy();
 
+	Position position;
+
 protected:
 
 	Texture texture;
-
-	Position position;
 
 	bool active;
 

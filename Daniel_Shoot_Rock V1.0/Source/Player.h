@@ -1,7 +1,9 @@
 #pragma once
-
 #include "GameObject.h"
 #include <iostream>
+#include "Bullet.h"
+#include "BulletBag.h"
+#include <deque>
 
 class Player : public GameObject
 {
@@ -16,10 +18,16 @@ public:
 
 	void Charging();
 
+	std::deque<Bullet*> GetBullets();
+
 private:
 
 	float rotation, chargeTime;
 
 	bool charging;
+
+	std::deque<Bullet*> bulletsInMotion;
+
+	BulletBag* bulletBag;
 
 };

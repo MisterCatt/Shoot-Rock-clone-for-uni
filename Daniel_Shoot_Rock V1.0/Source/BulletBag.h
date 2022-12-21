@@ -19,6 +19,8 @@ public:
 	Bullet* GetBullet();
 
 	int BulletsInBag();
+
+	void Render();
 private:
 
 	std::deque<Bullet*> bullets;

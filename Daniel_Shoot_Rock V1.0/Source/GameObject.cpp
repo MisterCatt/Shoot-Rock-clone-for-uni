@@ -29,8 +29,6 @@ std::string GameObject::GetName()
 	return name;
 }
 
-
-
 void GameObject::Destroy() {
 	//IMPLEMENT LATER
 }

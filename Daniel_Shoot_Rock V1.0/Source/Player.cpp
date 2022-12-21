@@ -11,6 +11,8 @@ Player::Player() : GameObject("Player")
 
 	charging = false;
 	chargeTime = 0;
+
+	bulletBag = new BulletBag();
 }
 
 Player::~Player()
@@ -21,6 +23,10 @@ void Player::Update() {
 	if (IsActive()) {
 		Input();
 		Charging();
+	}
+
+	for (Bullet* b : GetBullets()) {
+		b->Update();
 	}
 }
 
@@ -53,6 +59,14 @@ void Player::Input() {
 
 		if (chargeTime >= 120) {
 			std::cout << "Shot" << std::endl;
+
+			Bullet* b = new Bullet();
+			b->position.SetX(position.GetX());
+			b->position.SetY(position.GetY() - 5);
+			
+			b->SetActive(true);
+
+			bulletsInMotion.push_back(b);
 		}
 	}
 }
@@ -68,6 +82,10 @@ void Player::Render() {
 			rotation,
 			WHITE);
 	}
+
+	for (Bullet* b : GetBullets()) {
+		b->Render();
+	}
 }
 
 void Player::Charging() {
@@ -78,4 +96,8 @@ void Player::Charging() {
 	else {
 		chargeTime = 0;
 	}
+}
+
+std::deque<Bullet*> Player::GetBullets() {
+	return bulletsInMotion;
 }
