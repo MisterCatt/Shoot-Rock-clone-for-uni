@@ -58,15 +58,7 @@ void Player::Input() {
 		charging = false;
 
 		if (chargeTime >= 120) {
-			std::cout << "Shot" << std::endl;
-
-			Bullet* b = new Bullet();
-			b->position.SetX(position.GetX());
-			b->position.SetY(position.GetY() - 5);
-			
-			b->SetActive(true);
-
-			bulletsInMotion.push_back(b);
+			Shoot();
 		}
 	}
 }
@@ -96,6 +88,18 @@ void Player::Charging() {
 	else {
 		chargeTime = 0;
 	}
+}
+
+void Player::Shoot() {
+	std::cout << "Shot" << std::endl;
+
+	Bullet* b = new Bullet();
+	b->position.SetX(position.GetX());
+	b->position.SetY(position.GetY() - 5);
+
+	b->SetActive(true);
+
+	bulletsInMotion.push_back(b);
 }
 
 std::deque<Bullet*> Player::GetBullets() {

@@ -32,9 +32,3 @@ int BulletBag::BulletsInBag() {
 void BulletBag::Unload() {
 	bullets.clear();
 }
-
-void BulletBag::Render() {
-	for (Bullet* b : bullets) {
-		b->Render();
-	}
-}

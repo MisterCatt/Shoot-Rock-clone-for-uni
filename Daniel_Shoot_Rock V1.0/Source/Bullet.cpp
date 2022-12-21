@@ -4,7 +4,7 @@ Bullet::Bullet() : GameObject("Bullet")
 {
 	//texture = LoadTexture("assets/bullet.png");
 
-	speed = 5;
+	speed = 10;
 
 	bulletTimer = 120;
 

@@ -18,6 +18,8 @@ public:
 
 	void Charging();
 
+	void Shoot();
+
 	std::deque<Bullet*> GetBullets();
 
 private:
