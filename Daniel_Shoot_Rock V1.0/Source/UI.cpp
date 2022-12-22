@@ -12,7 +12,10 @@ UI::UI()
 
 UI::~UI()
 {
-	
+	for (Stars* s : stars) {
+		delete s;
+		s = nullptr;
+	}
 
 	stars.clear();
 
@@ -22,15 +25,6 @@ void UI::Update() {
 	for (Stars* s : stars) {
 		s->Update();
 	}
-
-	for (Stars* s : stars) {
-		delete s;
-		s = nullptr;
-	}
-
-	stars.clear();
-
-	void;
 }
 
 void UI::Render() {

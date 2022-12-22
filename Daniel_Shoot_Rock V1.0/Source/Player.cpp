@@ -2,7 +2,7 @@
 
 Player::Player() : GameObject("Player")
 {
-	texture = LoadTexture("Assets/TestSpin.png");
+	texture = LoadTexture("Assets/SpaceShip.png");
 
 	rotation = 0;
 
@@ -35,23 +35,22 @@ void Player::Update() {
 }
 
 void Player::Input() {
-	/*if (IsKeyDown(KEY_E)) {
-		rotation++;
-	}
-	if (IsKeyDown(KEY_Q)) {
-		rotation--;
-	}*/
+	
 
 	if (IsKeyDown(KEY_A)) {
-		position.x -= speed;;
+		if(position.GetX() > (0 + texture.width / 2))
+		position.x -= speed;
 	}
 	if (IsKeyDown(KEY_D)) {
+		if (position.GetX() < (GetScreenWidth() - texture.width/2))
 		position.x+=speed;
 	}
 	if (IsKeyDown(KEY_W)) {
+		if(position.GetY() > 0)
 		position.y-=speed;
 	}
 	if (IsKeyDown(KEY_S)) {
+		if(position.y < GetScreenHeight())
 		position.y+=speed;
 	}
 
@@ -74,9 +73,10 @@ void Player::Input() {
 
 void Player::Render() {
 	if (IsActive()) {
+
 		DrawTexturePro(
 			texture,
-			Rectangle{ 0.0f, 0.0f, 25, 50 },
+			Rectangle{ 0.0f, 0.0f, (float)texture.width, (float)texture.height},
 			Rectangle{ position.x,position.y,
 			(float)texture.width, (float)texture.height },
 			Vector2{ (float)texture.width / 2, (float)texture.height / 2 },
