@@ -6,6 +6,8 @@ GameObject::GameObject(std::string objName)
 
 	active = false;
 
+	speed = 5;
+
 }
 
 GameObject::~GameObject()

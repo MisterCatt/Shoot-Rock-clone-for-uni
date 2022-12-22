@@ -169,6 +169,7 @@
     <ClCompile Include="Source\Position.cpp" />
     <ClCompile Include="Source\Rock.cpp" />
     <ClCompile Include="Source\ShootRock.cpp" />
+    <ClCompile Include="Source\Stars.cpp" />
     <ClCompile Include="Source\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="Source\Position.h" />
     <ClInclude Include="Source\Rock.h" />
     <ClInclude Include="Source\ShootRock.h" />
+    <ClInclude Include="Source\Stars.h" />
     <ClInclude Include="Source\UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

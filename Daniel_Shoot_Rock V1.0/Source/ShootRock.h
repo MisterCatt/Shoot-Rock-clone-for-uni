@@ -2,6 +2,8 @@
 
 #include "raylib.h"
 #include "Player.h"
+#include "Rock.h"
+#include "UI.h"
 
 class ShootRock
 {
@@ -16,6 +18,9 @@ public:
 private:
 
 	Player* p;
+	Rock* r;
+	UI ui;
+
 
 };
 

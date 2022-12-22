@@ -20,5 +20,4 @@ private:
 
 	int bulletTimer;
 
-	float speed;
 };

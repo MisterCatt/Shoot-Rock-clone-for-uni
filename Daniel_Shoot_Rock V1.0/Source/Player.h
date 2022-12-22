@@ -1,6 +1,6 @@
 #pragma once
+
 #include "GameObject.h"
-#include <iostream>
 #include "Bullet.h"
 #include "BulletBag.h"
 #include <deque>
@@ -28,7 +28,7 @@ public:
 
 private:
 
-	float rotation, chargeTime;
+	float rotation, chargeTime, chargeCooldown;
 
 	bool charging;
 

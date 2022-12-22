@@ -31,5 +31,7 @@ protected:
 
 	std::string name;
 
+	float speed;
+
 };
 

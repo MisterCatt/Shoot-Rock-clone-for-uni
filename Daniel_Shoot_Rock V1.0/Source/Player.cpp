@@ -11,6 +11,12 @@ Player::Player() : GameObject("Player")
 
 	charging = false;
 	chargeTime = 0;
+
+	speed = 5;
+
+	chargeCooldown = 2;
+
+	newTime = oldTime = dif = 0;
 }
 
 Player::~Player()
@@ -37,16 +43,16 @@ void Player::Input() {
 	}*/
 
 	if (IsKeyDown(KEY_A)) {
-		position.x--;
+		position.x -= speed;;
 	}
 	if (IsKeyDown(KEY_D)) {
-		position.x++;
+		position.x+=speed;
 	}
 	if (IsKeyDown(KEY_W)) {
-		position.y--;
+		position.y-=speed;
 	}
 	if (IsKeyDown(KEY_S)) {
-		position.y++;
+		position.y+=speed;
 	}
 
 	if (IsKeyPressed(KEY_Z)) {
@@ -61,7 +67,7 @@ void Player::Input() {
 		std::cout << dif << std::endl;
 
 		charging = false;
-		if(dif >= 3)
+		if(dif >= chargeCooldown)
 		Shoot();
 	}
 }
