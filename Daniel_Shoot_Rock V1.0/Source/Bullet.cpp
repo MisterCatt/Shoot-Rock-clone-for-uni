@@ -33,8 +33,9 @@ void Bullet::Update() {
 }
 
 void Bullet::Render() {
-	if (active)
-		DrawCircle(position.x, position.y, 8, WHITE);
+	//if (active)
+		
+		//DrawCircle(position.x, position.y, 8, WHITE);
 		//DrawTextureEx(m_texture, GetPosition(), GetAngle(), 1, RAYWHITE);
 }
 

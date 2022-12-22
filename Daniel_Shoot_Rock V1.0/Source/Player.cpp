@@ -2,10 +2,6 @@
 
 Player::Player() : GameObject("Player")
 {
-	cb.push_back(new ChargeBall(WHITE));
-	cb.push_back(new ChargeBall(BLUE));
-	cb.push_back(new ChargeBall(DARKBLUE));
-
 	texture = LoadTexture("Assets/SpaceShip.png");
 
 	rotation = 0;
@@ -22,10 +18,9 @@ Player::Player() : GameObject("Player")
 
 	newTime = oldTime = dif = 0;
 
-	ballSpeed = 8;
-	ballAngle = 180;
-
-	goingRigth = true;
+	cb.push_back(new ChargeBall(WHITE, speed, true));
+	cb.push_back(new ChargeBall(BLUE, speed, true));
+	cb.push_back(new ChargeBall(DARKBLUE, speed, false));
 }
 
 Player::~Player()
@@ -35,11 +30,9 @@ Player::~Player()
 void Player::Update() {
 	if (IsActive()) {
 		Input();
-		Charging();
-	}
-
-	for (Bullet* b : GetBullets()) {
-		b->Update();
+		
+		for (ChargeBall* c : cb)
+			c->Update();
 	}
 }
 
@@ -65,14 +58,11 @@ void Player::Input() {
 
 	if (IsKeyPressed(KEY_Z)) {
 		oldTime = GetTime();
+		
+		for (ChargeBall* c : cb)
+			c->Reset(position.x, position.y-40);
+		
 		charging = true;
-
-		for (ChargeBall* c : cb) {
-			c->SetUp(position.GetX(), 40);
-		}
-
-		ballRadius = 40;
-		ballPos.x = position.GetX();
 	}
 	if (IsKeyReleased(KEY_Z)) {
 		newTime = GetTime();
@@ -84,6 +74,9 @@ void Player::Input() {
 		charging = false;
 		if(dif >= chargeCooldown)
 		Shoot();
+		else
+			for (ChargeBall* c : cb)
+				c->SetActive(false);
 	}
 
 }
@@ -101,73 +94,19 @@ void Player::Render() {
 			WHITE);
 	}
 
-	for (Bullet* b : GetBullets()) {
-		b->Render();
-	}
-
-	if (charging) {
-		for (ChargeBall* c : cb) {
-			c->Render();
-		}
-	}
-		//DrawCircle((int)ballPos.x, (int)ballPos.y, ballRadius, BLUE);
+	for(ChargeBall* c : cb)
+		c->Render();
 }
 
 void Player::Charging() {
-	if (charging) {
-		
-		for (ChargeBall* c : cb) {
-			c->Jitter();
-		}
-
-		
-			
-	}
+	
 }
 
-
-void Player::BallMove() {
-	float x_vec = (float)sin(ballAngle * 3.14159265358979323846 / -180.0f);
-	float y_vec = (float)cos(ballAngle * 3.14159265358979323846 / 180.0f);
-
-	float magnitude = (float)sqrt(x_vec * x_vec + y_vec * y_vec);
-
-	ballPos.x = (ballPos.x + x_vec / magnitude * ballSpeed);
-	ballPos.y =(ballPos.y + y_vec / magnitude * ballSpeed);
-}
 
 void Player::Shoot() {
 	std::cout << "Shot" << std::endl;
 
-	Bullet* b = GetBulletFromBag();
-	b->position.SetX(position.GetX());
-	b->position.SetY(position.GetY() - 5);
-	b->RestartTimer();
-
-	b->SetActive(true);
+	for (ChargeBall* c : cb)
+		c->Launch();
 }
 
-std::deque<Bullet*> Player::GetBullets() {
-	return bulletsInMotion;
-}
-
-void Player::BulletBag() {
-
-}
-
-Bullet* Player::GetBulletFromBag() {
-	if (bulletsInMotion.empty()) {
-		bulletsInMotion.push_back(new Bullet());
-		return bulletsInMotion.at(0);
-	}
-	else {
-		for (int i = 0; i < bulletsInMotion.size(); i++) {
-			if (!bulletsInMotion.at(i)->IsActive()) {
-				return bulletsInMotion.at(i);
-			}
-		}
-		bulletsInMotion.push_back(new Bullet());
-		return bulletsInMotion.back();
-	}
-	return nullptr;
-}

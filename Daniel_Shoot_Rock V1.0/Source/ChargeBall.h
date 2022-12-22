@@ -1,17 +1,23 @@
 #pragma once
 #include <raylib.h>
+#include "GameObject.h"
 
-class ChargeBall
+class ChargeBall : public GameObject
 {
 public:
-	ChargeBall(Color col);
+	ChargeBall(Color col, float playerSpeed, bool right);
 	~ChargeBall();
 
 	void SetRightDir(bool goingRight);
-	void SetUp(float xPos, float rad);
 
 	void Update();
 	void Render();
+
+	void Reset(float xPos, float yPos);
+
+	void Launch();
+
+	void Destroy();
 
 	void Jitter();
 
@@ -19,13 +25,11 @@ private:
 
 	Color colour;
 
-	bool rightDir;
+	bool rightDir,startDir,upDir,launching;
 
-	float radius, speed;
+	float radius;
 
-	struct B_Pos {
-		float x, y;
-	} ballPos;
+	float baseX, baseY, spacing, timer;
 
 };
 

@@ -22,11 +22,6 @@ public:
 
 	void Shoot();
 
-	std::deque<Bullet*> GetBullets();
-
-	void BulletBag();
-
-	Bullet* GetBulletFromBag();
 
 private:
 
@@ -34,21 +29,9 @@ private:
 
 	bool charging;
 
-	std::deque<Bullet*> bulletsInMotion;
 	std::list<ChargeBall*> cb;
 
+
 	double newTime, oldTime, dif;
-
-
-	//ANIMATION BALLS
-	void BallMove();
-
-	float ballRadius, ballSpeed, ballAngle, frameCount, jitterSpeed;
-
-	bool goingRigth;
-
-	struct B_Pos {
-		float x, y;
-	} ballPos;
 
 };
