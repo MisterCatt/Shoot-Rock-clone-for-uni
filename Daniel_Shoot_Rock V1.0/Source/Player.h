@@ -36,4 +36,16 @@ private:
 
 	double newTime, oldTime, dif;
 
+
+	//ANIMATION BALLS
+	void BallMove();
+
+	float ballRadius, ballSpeed, ballAngle, frameCount, jitterSpeed;
+
+	bool goingRigth;
+
+	struct B_Pos {
+		float x, y;
+	} ballPos;
+
 };

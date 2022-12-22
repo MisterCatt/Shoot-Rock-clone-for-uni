@@ -14,9 +14,14 @@ Player::Player() : GameObject("Player")
 
 	speed = 5;
 
-	chargeCooldown = 2;
+	chargeCooldown = 1.4f;
 
 	newTime = oldTime = dif = 0;
+
+	ballSpeed = 8;
+	ballAngle = 180;
+
+	goingRigth = true;
 }
 
 Player::~Player()
@@ -57,6 +62,8 @@ void Player::Input() {
 	if (IsKeyPressed(KEY_Z)) {
 		oldTime = GetTime();
 		charging = true;
+		ballRadius = 40;
+		ballPos.x = position.GetX();
 	}
 	if (IsKeyReleased(KEY_Z)) {
 		newTime = GetTime();
@@ -69,6 +76,8 @@ void Player::Input() {
 		if(dif >= chargeCooldown)
 		Shoot();
 	}
+
+	Charging();
 }
 
 void Player::Render() {
@@ -87,10 +96,48 @@ void Player::Render() {
 	for (Bullet* b : GetBullets()) {
 		b->Render();
 	}
+
+	if(charging)
+		DrawCircle(ballPos.x, ballPos.y, ballRadius, BLUE);
 }
 
 void Player::Charging() {
-	
+	if (charging) {
+		
+		ballPos.y = position.y-40;
+
+		if (goingRigth)
+			ballPos.x+=ballSpeed;
+		else
+			ballPos.x -= ballSpeed;
+
+		if (ballPos.x > position.GetX() + 10) {
+			goingRigth = false;
+		}
+		if (ballPos.x < position.GetX() - 10)
+		{
+			goingRigth = true;
+		}
+
+
+		if (ballRadius > 20) {
+			ballRadius -= 0.5f;
+		}
+
+		
+			
+	}
+}
+
+
+void Player::BallMove() {
+	float x_vec = (float)sin(ballAngle * 3.14159265358979323846 / -180.0f);
+	float y_vec = (float)cos(ballAngle * 3.14159265358979323846 / 180.0f);
+
+	float magnitude = (float)sqrt(x_vec * x_vec + y_vec * y_vec);
+
+	ballPos.x = (ballPos.x + x_vec / magnitude * ballSpeed);
+	ballPos.y =(ballPos.y + y_vec / magnitude * ballSpeed);
 }
 
 void Player::Shoot() {
