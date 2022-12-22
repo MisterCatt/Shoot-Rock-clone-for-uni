@@ -4,6 +4,8 @@
 #include "Bullet.h"
 #include "BulletBag.h"
 #include <deque>
+#include <list>
+#include "ChargeBall.h"
 
 class Player : public GameObject
 {
@@ -33,6 +35,7 @@ private:
 	bool charging;
 
 	std::deque<Bullet*> bulletsInMotion;
+	std::list<ChargeBall*> cb;
 
 	double newTime, oldTime, dif;
 

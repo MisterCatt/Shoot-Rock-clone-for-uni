@@ -2,12 +2,16 @@
 
 Player::Player() : GameObject("Player")
 {
+	cb.push_back(new ChargeBall(WHITE));
+	cb.push_back(new ChargeBall(BLUE));
+	cb.push_back(new ChargeBall(DARKBLUE));
+
 	texture = LoadTexture("Assets/SpaceShip.png");
 
 	rotation = 0;
 
-	position.SetX(GetScreenWidth()/2);
-	position.SetY((GetScreenHeight()/3)*2);
+	position.SetX((float)GetScreenWidth()/2);
+	position.SetY((float)(GetScreenHeight()/3)*2);
 
 	charging = false;
 	chargeTime = 0;
@@ -62,6 +66,11 @@ void Player::Input() {
 	if (IsKeyPressed(KEY_Z)) {
 		oldTime = GetTime();
 		charging = true;
+
+		for (ChargeBall* c : cb) {
+			c->SetUp(position.GetX(), 40);
+		}
+
 		ballRadius = 40;
 		ballPos.x = position.GetX();
 	}
@@ -77,7 +86,6 @@ void Player::Input() {
 		Shoot();
 	}
 
-	Charging();
 }
 
 void Player::Render() {
@@ -97,31 +105,19 @@ void Player::Render() {
 		b->Render();
 	}
 
-	if(charging)
-		DrawCircle(ballPos.x, ballPos.y, ballRadius, BLUE);
+	if (charging) {
+		for (ChargeBall* c : cb) {
+			c->Render();
+		}
+	}
+		//DrawCircle((int)ballPos.x, (int)ballPos.y, ballRadius, BLUE);
 }
 
 void Player::Charging() {
 	if (charging) {
 		
-		ballPos.y = position.y-40;
-
-		if (goingRigth)
-			ballPos.x+=ballSpeed;
-		else
-			ballPos.x -= ballSpeed;
-
-		if (ballPos.x > position.GetX() + 10) {
-			goingRigth = false;
-		}
-		if (ballPos.x < position.GetX() - 10)
-		{
-			goingRigth = true;
-		}
-
-
-		if (ballRadius > 20) {
-			ballRadius -= 0.5f;
+		for (ChargeBall* c : cb) {
+			c->Jitter();
 		}
 
 		
