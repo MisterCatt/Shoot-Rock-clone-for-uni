@@ -5,10 +5,10 @@ ShootRock::ShootRock()
 	p = new Player();
 	p->SetActive(true);
 
-	r = new Rock();
+	/*r = new Rock();
 	r->position.SetX(GetScreenWidth()/2);
 	r->RestartTimer();
-	r->SetActive(true);
+	r->SetActive(true);*/
 
 
 }

@@ -1,9 +1,6 @@
 #pragma once
 
 #include "GameObject.h"
-#include "Bullet.h"
-#include "BulletBag.h"
-#include <deque>
 #include <list>
 #include "ChargeBall.h"
 
@@ -17,8 +14,6 @@ public:
 	void Render();
 
 	void Input();
-
-	void Charging();
 
 	void Shoot();
 

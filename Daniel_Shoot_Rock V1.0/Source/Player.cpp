@@ -98,10 +98,6 @@ void Player::Render() {
 		c->Render();
 }
 
-void Player::Charging() {
-	
-}
-
 
 void Player::Shoot() {
 	std::cout << "Shot" << std::endl;

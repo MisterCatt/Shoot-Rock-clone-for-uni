@@ -18,7 +18,7 @@ public:
 private:
 
 	Player* p;
-	Rock* r;
+	/*Rock* r;*/
 	UI ui;
 
 
