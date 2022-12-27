@@ -13,13 +13,7 @@ public:
 
 	void Destroy();
 
-	void RestartTimer();
-
 private:
 
-	int rockTimer;
-	float acceleration;
-
-	
 };
 
