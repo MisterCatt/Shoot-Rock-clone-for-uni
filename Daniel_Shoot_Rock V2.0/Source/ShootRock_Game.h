@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "UI.h"
+#include "Player.h"
 
 class ShootRock_Game
 {
@@ -17,5 +18,6 @@ private:
 
 	UI gameUI;
 
+	Player* player;
 };
 

@@ -10,16 +10,26 @@ public:
 	virtual void Update() = 0;
 	virtual void Render() = 0;
 
-	Vector2 GetPosition();
+	virtual Vector2 GetPosition();
+	virtual void SetPosition(Vector2 _position);
+	virtual void SetPosition(float _x, float _y);
 
-	bool IsActive();
-	void SetActive(bool _activeStatus);
+	virtual bool IsActive();
+	virtual void SetActive(bool _activeStatus);
 
-	void SetAngle(bool _angle);
-	float GetAngle();
+	virtual void SetAngle(bool _angle);
+	virtual float GetAngle();
 
-	void SetSpeed(float _speed);
+	virtual void SetSpeed(float _speed);
+	virtual float GetSpeed();
 
+	virtual std::string ToString();
+	virtual const char* ToChar();
+
+	virtual void SetTexture(std::string _filePath);
+	virtual void SetTexture(const char* _filePath);
+
+	virtual Rectangle GetHitBox();
 protected:
 
 	float _Angle, _Speed;
@@ -29,6 +39,8 @@ protected:
 	Vector2 _Position;
 
 	Texture2D _Texture;
+
+	std::string _Name;
 
 };
 

@@ -161,7 +161,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\ShootRock_Game.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\StarFall.cpp" />
@@ -169,6 +171,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Core.h" />
+    <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\ShootRock_Game.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\StarFall.h" />
