@@ -143,8 +143,6 @@ void AsteroidFall::Timer()
 
 void AsteroidFall::StopSpawning()
 {
-	std::cout << seconds%14 << std::endl;
-
 	if (seconds % 14 == 0 && !stopSpawning) {
 		stopSpawning = true;
 		if(spawnTimer >= 0.05)
