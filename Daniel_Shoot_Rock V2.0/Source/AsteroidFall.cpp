@@ -19,11 +19,8 @@ AsteroidFall::~AsteroidFall()
 	asteroidBag.clear();
 }
 
-int AsteroidFall::Collision()
+int AsteroidFall::PlayerCollision()
 {
-	if (!IsActive())
-		return;
-
 	for (Asteroid* a : asteroidBag) {
 		
 		if(a->IsActive())
@@ -31,6 +28,7 @@ int AsteroidFall::Collision()
 				(a->GetHitBox().x - a->GetHitBox().width / 2 > player->GetHitBox().x + player->GetHitBox().width / 2) ||
 				(a->GetHitBox().y + a->GetHitBox().height / 2 < player->GetHitBox().y - player->GetHitBox().height / 2) ||
 				(a->GetHitBox().y - a->GetHitBox().height / 2 > player->GetHitBox().y + player->GetHitBox().height / 2))) {
+				a->DestroyAsteroid();
 				return 1;
 		}
 	}
@@ -51,13 +49,16 @@ void AsteroidFall::Update()
 	
 	
 
-	if (Collision() == 1) {
-		std::cout << "HIT" << std::endl;
+	if (PlayerCollision() == 1) {
+		std::cout << "ded!" << std::endl;
+		player->PlayerDied();
 	}
 }
 
 void AsteroidFall::Render()
 {
+	if (!IsActive())
+		return;
 	for (Asteroid* a : asteroidBag)
 		a->Render();
 }
@@ -75,9 +76,6 @@ void AsteroidFall::SpawnAsteroids()
 	timerCurrent += GetFrameTime();
 
 	if (timerCurrent >= spawnTimer) {
-
-		std::cout << temp << std::endl;
-
 		for (Asteroid* a : asteroidBag) {
 			if (!a->IsActive()) {
 				a->SpawnAsteroid();

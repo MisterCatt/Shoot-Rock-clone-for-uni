@@ -17,7 +17,6 @@ Player* Player::GetInstance()
 
 Player::Player() {
 	SetTexture("Assets/SpaceShip.png");
-	SetPosition({100,100});
 	SetSpeed(10);
 
 	shootCoolDown = 1.4;
@@ -111,7 +110,7 @@ void Player::Shoot()
 
 void Player::SpawnPlayer()
 {
-	SetPosition({100,100});
+	SetPosition((GetScreenWidth() / 2), GetScreenHeight() - (GetScreenHeight() / 8));
 	isDead = false;
 	SetActive(true);
 }

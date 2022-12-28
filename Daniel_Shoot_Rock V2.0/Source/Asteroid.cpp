@@ -70,5 +70,4 @@ void Asteroid::WorldWrap()
 {
 	if (_Position.y > GetScreenHeight() + 400)
 		SetActive(false);
-		//SetPosition(Vector2{ (float)GetRandomValue(0, GetScreenWidth()-50), -400 });
 }

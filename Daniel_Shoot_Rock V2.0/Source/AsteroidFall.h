@@ -9,7 +9,7 @@ public:
 	AsteroidFall();
 	~AsteroidFall();
 
-	int Collision();
+	int PlayerCollision();
 
 	void Update();
 	void Render();
