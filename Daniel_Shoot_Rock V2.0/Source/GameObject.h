@@ -17,7 +17,7 @@ public:
 	virtual bool IsActive();
 	virtual void SetActive(bool _activeStatus);
 
-	virtual void SetAngle(bool _angle);
+	virtual void SetAngle(float _angle);
 	virtual float GetAngle();
 
 	virtual void SetSpeed(float _speed);

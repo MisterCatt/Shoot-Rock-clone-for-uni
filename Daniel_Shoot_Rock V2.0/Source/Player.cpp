@@ -43,7 +43,7 @@ void Player::Render()
 		Rectangle{ _Position.x,_Position.y,
 		(float)_Texture.width, (float)_Texture.height },
 		Vector2{ (float)_Texture.width / 2, (float)_Texture.height / 2 },
-		_Angle,
+		GetAngle(),
 		WHITE);
 }
 

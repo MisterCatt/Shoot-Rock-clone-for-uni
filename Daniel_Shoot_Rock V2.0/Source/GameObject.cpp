@@ -40,7 +40,7 @@ void GameObject::SetActive(bool _activeStatus)
 	_IsActive = _activeStatus;
 }
 
-void GameObject::SetAngle(bool _angle)
+void GameObject::SetAngle(float _angle)
 {
 	_Angle = _angle;
 }
