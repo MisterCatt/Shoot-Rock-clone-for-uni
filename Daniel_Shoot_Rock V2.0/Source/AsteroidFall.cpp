@@ -12,6 +12,11 @@ AsteroidFall::AsteroidFall()
 
 	spawned = false;
 	isActive = true;
+
+	time = 0;
+	spawnStopTime = seconds = minutes = hours = 0;
+
+	stopSpawning = false;
 }
 
 AsteroidFall::~AsteroidFall()
@@ -41,6 +46,9 @@ void AsteroidFall::Update()
 	if (!IsActive())
 		return;
 
+	Timer();
+	StopSpawning();
+
 	for (Asteroid* a : asteroidBag)
 		a->Update();
 
@@ -65,13 +73,14 @@ void AsteroidFall::Render()
 
 void AsteroidFall::SpawnAsteroids()
 {
+	if (stopSpawning)
+		return;
+
 	if (asteroidBag.empty()) {
 		asteroidBag.push_back(new Asteroid());
 	}
 
 	spawned = false;
-
-	float temp = (float)GetTime() - GetFrameTime();
 
 	timerCurrent += GetFrameTime();
 
@@ -105,4 +114,42 @@ void AsteroidFall::SetActive(bool _active)
 {
 	isActive = _active;
 }
+
+void AsteroidFall::Timer()
+{
+	time += GetFrameTime();
+
+	if (time >= 1) {
+		seconds++;
+		time = 0;
+
+		if (stopSpawning) {
+			spawnStopTime++;
+			if (spawnStopTime >= 4) {
+				stopSpawning = false;
+				spawnStopTime = 0;
+			}
+		}
+	}
+	if (seconds >= 60) {
+		minutes++;
+		seconds = 0;
+	}
+	if (minutes >= 60) {
+		hours++;
+		minutes = 0;
+	}
+}
+
+void AsteroidFall::StopSpawning()
+{
+	std::cout << seconds%14 << std::endl;
+
+	if (seconds % 14 == 0 && !stopSpawning) {
+		stopSpawning = true;
+		if(spawnTimer >= 0.05)
+		spawnTimer -= (spawnTimer / 10.0f);
+	}
+}
+
 

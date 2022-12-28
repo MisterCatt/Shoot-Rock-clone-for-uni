@@ -55,7 +55,7 @@ void Asteroid::DrawHitbox()
 
 void Asteroid::SpawnAsteroid()
 {
-	SetPosition(Vector2{ (float)GetRandomValue(0, GetScreenWidth()), -400 });
+	SetPosition(Vector2{ (float)GetRandomValue(0, GetScreenWidth()), (float)GetRandomValue(-100, -400) });
 
 	SetActive(true);
 }
