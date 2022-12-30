@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include <iostream>
+#include "Bullet.h"
 
 class Player : public GameObject
 {
@@ -28,6 +29,7 @@ private:
 	Player();
 	
 	static Player* instance;
+	std::list<Bullet*> bulletBag;
 
 	bool charging, isDead;
 

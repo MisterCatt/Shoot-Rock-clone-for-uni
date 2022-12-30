@@ -163,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Asteroid.cpp" />
     <ClCompile Include="Source\AsteroidFall.cpp" />
+    <ClCompile Include="Source\Bullet.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Asteroid.h" />
     <ClInclude Include="Source\AsteroidFall.h" />
+    <ClInclude Include="Source\Bullet.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\Player.h" />

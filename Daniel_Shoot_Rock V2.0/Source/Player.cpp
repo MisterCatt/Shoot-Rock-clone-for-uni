@@ -33,6 +33,11 @@ Player::~Player()
 
 void Player::Render()
 {
+	if (!bulletBag.empty())
+		for (Bullet* b : bulletBag)
+			if(b->IsActive())
+				b->Render();
+
 	if (!IsActive())
 		return;
 
@@ -58,6 +63,11 @@ void Player::Update()
 	if (IsKeyDown(KEY_P)) {
 		DrawHitbox();
 	}
+
+	if (!bulletBag.empty())
+		for (Bullet* b : bulletBag)
+			if (b->IsActive())
+				b->Update();
 
 	if (!IsActive())
 		return;
@@ -105,6 +115,9 @@ void Player::Input()
 
 void Player::Shoot()
 {
+	Bullet* b = new Bullet();
+	b->SetPosition(GetPosition());
+	bulletBag.push_back(b);
 	std::cout << "Shoot" << std::endl;
 }
 
