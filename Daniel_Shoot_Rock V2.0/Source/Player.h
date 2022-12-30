@@ -23,15 +23,17 @@ public:
 
 	void DrawHitbox();
 
+	std::list<Bullet*> BulletBag;
+
 private:
 	
 
 	Player();
 	
 	static Player* instance;
-	std::list<Bullet*> bulletBag;
+	
 
-	bool charging, isDead;
+	bool charging, isDead, noBullets;
 
 	double newTime, oldTime, dif, shootCoolDown, chargeTime;
 };

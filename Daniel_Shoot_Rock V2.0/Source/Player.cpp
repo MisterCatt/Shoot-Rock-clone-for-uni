@@ -33,8 +33,8 @@ Player::~Player()
 
 void Player::Render()
 {
-	if (!bulletBag.empty())
-		for (Bullet* b : bulletBag)
+	if (!BulletBag.empty())
+		for (Bullet* b : BulletBag)
 			if(b->IsActive())
 				b->Render();
 
@@ -64,8 +64,8 @@ void Player::Update()
 		DrawHitbox();
 	}
 
-	if (!bulletBag.empty())
-		for (Bullet* b : bulletBag)
+	if (!BulletBag.empty())
+		for (Bullet* b : BulletBag)
 			if (b->IsActive())
 				b->Update();
 
@@ -115,10 +115,30 @@ void Player::Input()
 
 void Player::Shoot()
 {
-	Bullet* b = new Bullet();
-	b->SetPosition(GetPosition());
-	bulletBag.push_back(b);
-	std::cout << "Shoot" << std::endl;
+	if (BulletBag.empty()) {
+		Bullet* b = new Bullet();
+		b->SetPosition(GetPosition());
+		BulletBag.push_back(b);
+		std::cout << "Shoot" << std::endl;
+	}
+	else {
+		for (Bullet* b : BulletBag) {
+			if (!b->IsActive()) {
+				b->Reset();
+				b->SetPosition(GetPosition());
+				b->SetActive(true);
+				return;
+			}
+			noBullets = true;
+		}
+		if (noBullets) {
+			Bullet* b = new Bullet();
+			b->SetPosition(GetPosition());
+			BulletBag.push_back(b);
+			std::cout << "Shoot" << std::endl;
+		}
+
+	}
 }
 
 void Player::SpawnPlayer()

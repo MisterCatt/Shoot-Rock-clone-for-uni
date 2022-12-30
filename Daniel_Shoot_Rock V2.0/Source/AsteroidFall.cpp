@@ -41,6 +41,25 @@ int AsteroidFall::PlayerCollision()
 
 }
 
+int AsteroidFall::BulletCollision()
+{
+	for (Asteroid* a : asteroidBag) {
+
+		if (a->IsActive())
+			for(Bullet* b : player->BulletBag)
+			if (!((a->GetHitBox().x + a->GetHitBox().width / 2 < b->GetHitBox().x - b->GetHitBox().width / 2) ||
+				(a->GetHitBox().x - a->GetHitBox().width / 2 > b->GetHitBox().x + b->GetHitBox().width / 2) ||
+				(a->GetHitBox().y + a->GetHitBox().height / 2 < b->GetHitBox().y - b->GetHitBox().height / 2) ||
+				(a->GetHitBox().y - a->GetHitBox().height / 2 > b->GetHitBox().y + b->GetHitBox().height / 2))) {
+				a->DestroyAsteroid();
+				return 1;
+			}
+	}
+	return 0;
+}
+
+
+
 void AsteroidFall::Update() 
 {
 	if (!IsActive())
@@ -60,6 +79,11 @@ void AsteroidFall::Update()
 	if (PlayerCollision() == 1) {
 		std::cout << "ded!" << std::endl;
 		player->PlayerDied();
+	}
+
+	//SPAWN POINTS
+	if (BulletCollision() == 1) {
+		std::cout << "BULLETS AND SO ON AND SO FORTH" << std::endl;
 	}
 }
 

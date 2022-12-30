@@ -10,6 +10,7 @@ public:
 	~AsteroidFall();
 
 	int PlayerCollision();
+	int BulletCollision();
 
 	void Update();
 	void Render();
