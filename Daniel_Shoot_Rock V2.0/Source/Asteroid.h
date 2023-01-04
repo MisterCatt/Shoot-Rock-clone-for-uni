@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include <iostream>
 #include<math.h>
+#include "Point.h"
 
 class Asteroid : public GameObject
 {

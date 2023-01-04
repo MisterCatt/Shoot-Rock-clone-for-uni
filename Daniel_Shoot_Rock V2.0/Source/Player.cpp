@@ -19,11 +19,12 @@ Player::Player() {
 	SetTexture("Assets/SpaceShip.png");
 	SetSpeed(10);
 
-	shootCoolDown = 1.4;
+	shootCoolDown = 1;
 
 	chargeTime = newTime = oldTime = dif = 0;
 
 	isDead = charging = false;
+	noBullets = true;
 
 }
 
@@ -143,7 +144,7 @@ void Player::Shoot()
 
 void Player::SpawnPlayer()
 {
-	SetPosition((GetScreenWidth() / 2), GetScreenHeight() - (GetScreenHeight() / 8));
+	SetPosition((float)(GetScreenWidth() / 2), (float)(GetScreenHeight() - (GetScreenHeight() / 8)));
 	isDead = false;
 	SetActive(true);
 }

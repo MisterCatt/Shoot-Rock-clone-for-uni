@@ -3,6 +3,7 @@
 AsteroidFall::AsteroidFall()
 {
 	player = Player::GetInstance();
+	pointManager = PointManager::GetInstance();
 
 	totalAsteroids = 20;
 	spawnTimer = 1.0f;
@@ -17,6 +18,8 @@ AsteroidFall::AsteroidFall()
 	spawnStopTime = seconds = minutes = hours = 0;
 
 	stopSpawning = false;
+
+	
 }
 
 AsteroidFall::~AsteroidFall()
@@ -52,6 +55,7 @@ int AsteroidFall::BulletCollision()
 				(a->GetHitBox().y + a->GetHitBox().height / 2 < b->GetHitBox().y - b->GetHitBox().height / 2) ||
 				(a->GetHitBox().y - a->GetHitBox().height / 2 > b->GetHitBox().y + b->GetHitBox().height / 2))) {
 				a->DestroyAsteroid();
+				pointManager->SpawnPoints(a->GetPosition());
 				return 1;
 			}
 	}

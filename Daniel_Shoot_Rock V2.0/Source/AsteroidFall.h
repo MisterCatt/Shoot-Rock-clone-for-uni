@@ -2,6 +2,7 @@
 #include "Core.h"
 #include "Asteroid.h"
 #include "Player.h"
+#include "PointManager.h"
 
 class AsteroidFall
 {
@@ -36,5 +37,7 @@ private:
 	//Timer variables
 	float time;
 	int seconds, minutes, hours, spawnStopTime;
+
+	PointManager* pointManager;
 };
 

@@ -1,8 +1,9 @@
 #pragma once
-#include "Core.h"
 #include "UI.h"
 #include "Player.h"
 #include "AsteroidFall.h"
+#include "ChargeBall.h"
+#include "PointManager.h"
 
 class ShootRock_Game
 {
@@ -22,6 +23,7 @@ private:
 
 	Player* player;
 
+	PointManager* pointManager;
 
 };
 
