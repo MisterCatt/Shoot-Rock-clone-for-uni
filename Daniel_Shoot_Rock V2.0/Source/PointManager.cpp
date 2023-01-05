@@ -1,6 +1,6 @@
 #include "PointManager.h"
 
-PointManager* PointManager::instance = 0;
+PointManager* PointManager::instance = nullptr; //Need to make sure that PointManager have not been initialized before the first call. Remove this line and the game will crash.
 
 PointManager::PointManager()
 {

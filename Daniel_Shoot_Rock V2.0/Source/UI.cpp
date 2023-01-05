@@ -1,6 +1,6 @@
 #include "UI.h"
 
-UI* UI::instance = 0;
+UI* UI::instance = nullptr; //Need to make sure that UI have not been initialized before the first call. Remove this line and the game will crash.
 
 UI* UI::GetInstance()
 {

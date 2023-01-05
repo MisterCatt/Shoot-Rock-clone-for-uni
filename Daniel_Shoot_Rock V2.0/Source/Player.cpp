@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player* Player::instance = 0;
+Player* Player::instance = nullptr; //Need to make sure that Player have not been initialized before the first call. Remove this line and the game will crash.
 
 Player* Player::GetInstance()
 {
