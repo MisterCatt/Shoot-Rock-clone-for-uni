@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "UI.h"
 
+//It takes care of the current points in the game (and overall) making this a singleton gives me an easier access to it and I can add points wherever and whenever I want.
 class PointManager
 {
 public:

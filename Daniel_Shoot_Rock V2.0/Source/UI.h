@@ -2,6 +2,7 @@
 #include "StarFall.h"
 #include "PopupScore.h"
 
+//There is only going to be one UI throughout this project so I only have to worry about that. Thats why I made it a singleton, just so I can access the UI wherever and whenever throughout the game.
 class UI
 {
 public:
