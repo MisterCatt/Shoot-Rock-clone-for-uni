@@ -17,10 +17,18 @@ public:
 
 	void Move();
 
+	void PickUpPoint();
+
+	void DrawHitbox();
+
+	void Reset();
+
+	Rectangle GetHitBox();
+
 private:
 
 	float radius,angle, maxHeight;
 
-	bool right, goingUp;
+	bool goingUp;
 
 };

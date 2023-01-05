@@ -18,7 +18,9 @@ private:
 	void update();
 	void render();
 
-	UI gameUI;
+	void resetGame();
+
+	UI* gameUI;
 	AsteroidFall asteroids;
 
 	Player* player;

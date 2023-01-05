@@ -5,14 +5,13 @@ Point::Point()
 	radius = 5.0f;
 	SetSpeed(5);
 
-	right = GetRandomValue(0,1);
 	goingUp = true;
 
 	maxHeight = 0;
 
 	angle = GetRandomValue(135, 225);
 
-	SetActive(true);
+	SetActive(false);
 }
 
 Point::~Point()
@@ -34,11 +33,9 @@ void Point::Update()
 		SetSpeed(GetSpeed()/2);
 	}
 
-
-	std::cout << "Y Pos: " << _Position.y << " maxHeight: " << maxHeight << std::endl;
-
-	//std::cout << goingUp << std::endl;
-	
+	if (GetPosition().y > GetScreenHeight() + 50) {
+		SetActive(false);
+	}
 }
 
 void Point::Move() {
@@ -51,12 +48,21 @@ void Point::Move() {
 
 }
 
+void Point::PickUpPoint()
+{
+	SetActive(false);
+}
+
 void Point::Render()
 {
 	if (!IsActive())
 		return;
 
 	DrawCircle(_Position.x, _Position.y, radius, RED);
+
+	if (IsKeyDown(KEY_P)) {
+		DrawHitbox();
+	}
 }
 
 void Point::SetPosition(Vector2 _position)
@@ -73,3 +79,19 @@ void Point::SetPosition(float _x, float _y)
 	maxHeight = _Position.y - GetRandomValue(100, 150);
 }
 
+Rectangle Point::GetHitBox()
+{
+	return Rectangle{ GetPosition().x - radius, GetPosition().y - radius, radius, radius };
+}
+
+void Point::DrawHitbox()
+{
+	DrawRectangleRec(GetHitBox(), BLUE);
+}
+
+void Point::Reset()
+{
+	angle = GetRandomValue(135, 225);
+	goingUp = true;
+	SetSpeed(5);
+}

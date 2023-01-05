@@ -13,6 +13,7 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
+	UnloadTexture(_Texture);
 }
 
 Vector2 GameObject::GetPosition()

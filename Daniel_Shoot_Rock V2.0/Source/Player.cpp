@@ -19,6 +19,8 @@ Player::Player() {
 	SetTexture("Assets/SpaceShip.png");
 	SetSpeed(10);
 
+	ui = UI::GetInstance();
+
 	shootCoolDown = 1;
 
 	chargeTime = newTime = oldTime = dif = 0;
@@ -30,6 +32,7 @@ Player::Player() {
 
 Player::~Player()
 {
+	
 }
 
 void Player::Render()
@@ -153,6 +156,8 @@ void Player::PlayerDied()
 {
 	//Play death animation
 
+	ui->SetMenu(true);
+
 	isDead = true;
 	SetPosition({ (float)INT_MAX,(float)INT_MAX });
 	SetActive(false);
@@ -166,4 +171,10 @@ bool Player::IsDead()
 void Player::DrawHitbox()
 {
 	DrawRectangleRec(GetHitBox(), RED);
+}
+
+void Player::Reset()
+{
+	BulletBag.clear();
+	SpawnPlayer();
 }

@@ -9,8 +9,6 @@ AsteroidFall::AsteroidFall()
 	spawnTimer = 1.0f;
 	timerCurrent = 0;
 
-	//asteroidBag.front()->SpawnAsteroid();
-
 	spawned = false;
 	isActive = true;
 
@@ -86,9 +84,7 @@ void AsteroidFall::Update()
 	}
 
 	//SPAWN POINTS
-	if (BulletCollision() == 1) {
-		std::cout << "BULLETS AND SO ON AND SO FORTH" << std::endl;
-	}
+	BulletCollision();
 }
 
 void AsteroidFall::Render()

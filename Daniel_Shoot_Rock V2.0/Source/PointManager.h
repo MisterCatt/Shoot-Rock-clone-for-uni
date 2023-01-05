@@ -1,5 +1,7 @@
 #pragma once
 #include "Point.h"
+#include "Player.h"
+#include "UI.h"
 
 class PointManager
 {
@@ -12,11 +14,17 @@ public:
 	void Update();
 	void Render();
 
+	void Reset();
+
 	std::list<Point*> pointBag;
 
 private:
 	PointManager();
+
+	void PlayerCollision();
+
 	static PointManager* instance;
 
-
+	Player* player;
+	UI* ui;
 };

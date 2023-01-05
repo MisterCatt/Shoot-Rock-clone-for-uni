@@ -2,6 +2,7 @@
 #include "GameObject.h"
 #include <iostream>
 #include "Bullet.h"
+#include "UI.h"
 
 class Player : public GameObject
 {
@@ -23,6 +24,8 @@ public:
 
 	void DrawHitbox();
 
+	void Reset();
+
 	std::list<Bullet*> BulletBag;
 
 private:
@@ -31,6 +34,8 @@ private:
 	Player();
 	
 	static Player* instance;
+
+	UI* ui;
 	
 
 	bool charging, isDead, noBullets;
