@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Bullet.h"
 #include "UI.h"
+#include "ChargeUpAnimation.h"
 
 class Player : public GameObject
 {
@@ -37,6 +38,7 @@ private:
 
 	UI* ui;
 	
+	ChargeUpAnimation* anim;
 
 	bool charging, isDead, noBullets;
 

@@ -1,30 +1,77 @@
 #include "ChargeUpAnimation.h"
 
-ChargeUpAnimation::ChargeUpAnimation()
+ChargeUpAnimation::ChargeUpAnimation(Vector2 _position)
 {
-	player = Player::GetInstance();
+
+	middlePoint = _position;
+
+	speed = 20;
+
+	dif = 50.0f;
+
+	minX = middlePoint.x - dif;
+	maxX = middlePoint.x + dif;
 
 	charging = false;
 
-	ballMinRadius = 10;
+	ballMinRadius = 20;
 	ballMaxRadius = 40;
 
-	ball3 = ball2 = ball1 = { ballMaxRadius, player->GetPosition().x,player->GetPosition().y};
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE});
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, false, BLUE});
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, true, DARKBLUE});
 }
 
 ChargeUpAnimation::~ChargeUpAnimation()
 {
+	balls.clear();
 }
 
 void ChargeUpAnimation::Render()
 {
-	
+	if (!charging)
+		return;
+	for (ball* b : balls) {
+		DrawCircle(b->x, b->y, b->radius, b->col);
+	}
 }
 
-void ChargeUpAnimation::Update()
+void ChargeUpAnimation::Update(Vector2 _position)
 {
+	
 
-	ball3 = ball2 = ball1 = { ballMaxRadius, player->GetPosition().x,player->GetPosition().y + ballMaxRadius };
+	for (ball* b : balls) {
+		if (b->x < minX && !b->right) {
+			b->right = true;
+		}
+		if (b->x > maxX && b->right) {
+			b->right = false;
+		}
+
+		if (b->right) 
+			b->x += speed;
+		else
+			b->x -= speed;
+
+		b->y = _position.y - 50;
+	}
+
+	middlePoint = _position;
+	minX = middlePoint.x - dif;
+	maxX = middlePoint.x + dif;
+
+	if (charging)
+	{
+		if (dif > 8) {
+			dif--;
+		}
+
+		for (ball* b : balls) {
+			if (b->radius > ballMinRadius) {
+				b->radius--;
+			}
+		}
+	}
 }
 
 void ChargeUpAnimation::Charge()
@@ -32,7 +79,22 @@ void ChargeUpAnimation::Charge()
 	charging = true;
 }
 
-void ChargeUpAnimation::Reset()
+void ChargeUpAnimation::Reset(Vector2 _position)
 {
-	ball3 = ball2 = ball1 = { ballMaxRadius, player->GetPosition().x,player->GetPosition().y + ballMaxRadius };
+	charging = false;
+
+	balls.clear();
+
+	middlePoint = _position;
+
+	dif = 50;
+
+	minX = middlePoint.x - dif;
+	maxX = middlePoint.x + dif;
+
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE });
+	balls.push_back(new ball{ ballMaxRadius, minX , _position.y - ballMaxRadius, false, BLUE });
+	balls.push_back(new ball{ ballMaxRadius, maxX , _position.y - ballMaxRadius, true, DARKBLUE });
+
+	
 }

@@ -21,18 +21,21 @@ Player::Player() {
 
 	ui = UI::GetInstance();
 
-	shootCoolDown = 1;
+	shootCoolDown = 0.5f;
 
 	chargeTime = newTime = oldTime = dif = 0;
 
 	isDead = charging = false;
 	noBullets = true;
 
+	anim = new ChargeUpAnimation(GetPosition());
+
 }
 
 Player::~Player()
 {
-	
+	delete anim;
+	anim = nullptr;
 }
 
 void Player::Render()
@@ -53,6 +56,8 @@ void Player::Render()
 		Vector2{ (float)_Texture.width / 2, (float)_Texture.height / 2 },
 		GetAngle(),
 		WHITE);
+
+	anim->Render();
 }
 
 void Player::Update()
@@ -70,6 +75,7 @@ void Player::Update()
 		return;
 
 	Input();
+	anim->Update(GetPosition());
 }
 
 void Player::Input()
@@ -93,16 +99,18 @@ void Player::Input()
 
 	if (IsKeyPressed(KEY_Z)) {
 		oldTime = GetTime();
+		anim->Charge();
 
 		charging = true;
 	}
 	if (IsKeyReleased(KEY_Z)) {
 		newTime = GetTime();
-
+		
 		dif = (newTime - oldTime);
 
 		std::cout << dif << std::endl;
 
+		anim->Reset(GetPosition());
 		charging = false;
 		if (dif >= shootCoolDown)
 			Shoot();
@@ -141,6 +149,8 @@ void Player::Shoot()
 void Player::SpawnPlayer()
 {
 	SetPosition((float)(GetScreenWidth() / 2), (float)(GetScreenHeight() - (GetScreenHeight() / 8)));
+	charging = false;
+	anim->Reset(GetPosition());
 	isDead = false;
 	SetActive(true);
 }
