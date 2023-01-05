@@ -11,8 +11,6 @@ public:
 	void Render();
 	void Update();
 
-	void DrawHitbox();
-
 	void SpawnAsteroid();
 
 	void DestroyAsteroid();

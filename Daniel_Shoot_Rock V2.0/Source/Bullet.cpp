@@ -16,9 +16,6 @@ Bullet::~Bullet()
 
 void Bullet::Update() 
 {
-	if (IsKeyDown(KEY_P)) {
-		DrawHitbox();
-	}
 
 	if (!IsActive())
 		return;
@@ -64,9 +61,4 @@ void Bullet::Unload() {
 Rectangle Bullet::GetHitBox()
 {
 	return Rectangle{ GetPosition().x - radius, GetPosition().y - radius, radius*2, radius * 2 };
-}
-
-void Bullet::DrawHitbox()
-{
-	DrawRectangleRec(GetHitBox(), RED);
 }

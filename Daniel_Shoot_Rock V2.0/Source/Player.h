@@ -24,8 +24,6 @@ public:
 
 	bool IsDead();
 
-	void DrawHitbox();
-
 	void Reset();
 
 	std::list<Bullet*> BulletBag;

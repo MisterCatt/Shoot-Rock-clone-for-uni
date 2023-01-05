@@ -36,10 +36,6 @@ void Asteroid::Update()
 {
 	if (!IsActive())
 		return;
-
-	if (IsKeyDown(KEY_P)) {
-		DrawHitbox();
-	}
 	
 	SetAngle(GetAngle() - 5);
 
@@ -58,11 +54,6 @@ void Asteroid::Move() {
 
 	_Position = { GetPosition().x + x_vec / magnitude * GetSpeed(), GetPosition().y + y_vec / magnitude * GetSpeed() };
 
-}
-
-void Asteroid::DrawHitbox()
-{
-	DrawRectangleRec(GetHitBox(), RED);
 }
 
 void Asteroid::SpawnAsteroid()

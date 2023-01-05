@@ -82,21 +82,13 @@ void Player::Update()
 
 void Player::Input()
 {
-	if (IsKeyDown(KEY_A)) {
+	if (IsKeyDown(KEY_LEFT)) {
 		if (_Position.x > (0 + _Texture.width / 2))
 			_Position.x -= _Speed;
 	}
-	if (IsKeyDown(KEY_D)) {
+	if (IsKeyDown(KEY_RIGHT)) {
 		if (_Position.x < (GetScreenWidth() - _Texture.width / 2))
 			_Position.x += _Speed;
-	}
-	if (IsKeyDown(KEY_W)) {
-		if (_Position.y > 0)
-			_Position.y -= _Speed;
-	}
-	if (IsKeyDown(KEY_S)) {
-		if (_Position.y < GetScreenHeight())
-			_Position.y += _Speed;
 	}
 
 	if (IsKeyPressed(KEY_Z)) {
@@ -179,11 +171,6 @@ void Player::PlayerDied()
 bool Player::IsDead()
 {
 	return isDead;
-}
-
-void Player::DrawHitbox()
-{
-	DrawRectangleRec(GetHitBox(), RED);
 }
 
 void Player::Reset()

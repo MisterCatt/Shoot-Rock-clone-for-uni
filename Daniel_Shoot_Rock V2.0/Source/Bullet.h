@@ -18,8 +18,6 @@ public:
 
 	Rectangle GetHitBox();
 
-	void DrawHitbox();
-
 private:
 
 	float radius, secondsActive;

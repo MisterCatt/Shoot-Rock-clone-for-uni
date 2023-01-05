@@ -18,8 +18,6 @@ public:
 
 	void PickUpPoint();
 
-	void DrawHitbox();
-
 	void Reset();
 
 	Rectangle GetHitBox();

@@ -63,10 +63,6 @@ void Point::Render()
 		return;
 
 	DrawCircle((int)_Position.x, (int)_Position.y, radius, RED);
-
-	if (IsKeyDown(KEY_P)) {
-		DrawHitbox();
-	}
 }
 
 void Point::SetPosition(Vector2 _position)
@@ -86,11 +82,6 @@ void Point::SetPosition(float _x, float _y)
 Rectangle Point::GetHitBox()
 {
 	return Rectangle{ GetPosition().x - radius, GetPosition().y - radius, radius, radius };
-}
-
-void Point::DrawHitbox()
-{
-	DrawRectangleRec(GetHitBox(), BLUE);
 }
 
 void Point::Reset()
