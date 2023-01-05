@@ -126,11 +126,7 @@ void AsteroidFall::SpawnAsteroids()
 			spawned = true;
 		}
 		timerCurrent = 0;
-
-		
 	}
-
-	
 }
 
 bool AsteroidFall::IsActive()
