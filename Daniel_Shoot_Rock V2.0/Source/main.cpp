@@ -7,7 +7,7 @@ int main(void)
     const int screenWidth = 960;
     const int screenHeight = 960;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitWindow(screenWidth, screenHeight, "Shoot rock - Daniel Mardunovich, dama7895");
     InitAudioDevice();
 
     SetTargetFPS(60);              
