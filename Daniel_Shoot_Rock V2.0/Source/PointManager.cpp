@@ -17,6 +17,10 @@ PointManager::PointManager()
 
 PointManager::~PointManager()
 {
+	for (Point* p : pointBag) {
+		delete p;
+		p = nullptr;
+	}
 	pointBag.clear();
 	
 }

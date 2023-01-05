@@ -22,6 +22,10 @@ AsteroidFall::AsteroidFall()
 
 AsteroidFall::~AsteroidFall()
 {
+	for (Asteroid* a : asteroidBag) {
+		delete a;
+		a = nullptr;
+	}
 	asteroidBag.clear();
 	UnloadSound(destructionSound);
 }

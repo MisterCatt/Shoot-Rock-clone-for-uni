@@ -10,6 +10,10 @@ StarFall::StarFall()
 
 StarFall::~StarFall()
 {
+	for (Star* s : starList) {
+		delete s;
+		s = nullptr;
+	}
 	starList.clear();
 }
 

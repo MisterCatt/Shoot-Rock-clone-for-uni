@@ -23,6 +23,10 @@ UI::UI()
 
 UI::~UI()
 {
+	for (PopupScore* p : popupScore) {
+		delete p;
+		p = nullptr;
+	}
 	popupScore.clear();
 }
 

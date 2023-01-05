@@ -24,6 +24,10 @@ ChargeUpAnimation::ChargeUpAnimation(Vector2 _position)
 
 ChargeUpAnimation::~ChargeUpAnimation()
 {
+	for (ball* b : balls) {
+		delete b;
+		b = nullptr;
+	}
 	balls.clear();
 }
 
