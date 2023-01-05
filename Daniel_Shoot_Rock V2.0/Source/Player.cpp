@@ -57,15 +57,8 @@ void Player::Render()
 
 void Player::Update()
 {
-	if (IsKeyPressed(KEY_SPACE)) {
-		if (isDead)
-			SpawnPlayer();
-		else
-			PlayerDied();
-	}
-
-	if (IsKeyDown(KEY_P)) {
-		DrawHitbox();
+	if (ui->GetScore() > 10) {
+		PlayerDied();
 	}
 
 	if (!BulletBag.empty())

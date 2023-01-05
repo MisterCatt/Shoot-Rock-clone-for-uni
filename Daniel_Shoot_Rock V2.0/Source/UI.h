@@ -19,6 +19,8 @@ public:
 	bool GetMenuStatus();
 	void SetMenu(bool _menuStatus);
 
+	bool WinStatus();
+
 	void Reset();
 
 private:
@@ -32,9 +34,9 @@ private:
 
 	StarFall backgroundStars;
 
-	int score;
+	int score, winScore;
 
-	bool isMenu;
+	bool isMenu, win;
 	
 
 };

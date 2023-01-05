@@ -51,8 +51,6 @@ void PointManager::Update()
 		p->Update();
 	}
 	PlayerCollision();
-
-	std::cout << pointBag.size() << std::endl;
 }
 
 void PointManager::Render()

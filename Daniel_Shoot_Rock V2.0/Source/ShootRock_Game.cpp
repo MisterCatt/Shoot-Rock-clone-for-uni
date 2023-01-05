@@ -35,8 +35,6 @@ void ShootRock_Game::update()
 
 	pointManager->Update();
 
-
-
 	if (player->IsDead() && IsKeyDown(KEY_X))
 		resetGame();
 }

@@ -18,6 +18,8 @@ UI* UI::GetInstance()
 UI::UI()
 {
 	score = 0;
+	winScore = 10;
+	win = false;
 	isMenu = true;
 }
 
@@ -77,6 +79,11 @@ bool UI::GetMenuStatus()
 void UI::SetMenu(bool _menuStatus)
 {
 	isMenu = _menuStatus;
+}
+
+bool UI::WinStatus()
+{
+	return win;
 }
 
 void UI::Reset()
