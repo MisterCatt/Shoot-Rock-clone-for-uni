@@ -36,7 +36,7 @@ private:
 
 	//Timer variables
 	float time;
-	int seconds, minutes, hours, spawnStopTime;
+	int seconds, spawnStopTime;
 
 	PointManager* pointManager;
 

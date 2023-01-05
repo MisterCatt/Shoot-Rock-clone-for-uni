@@ -169,8 +169,6 @@ void Player::SpawnPlayer()
 
 void Player::PlayerDied()
 {
-	//Play death animation
-
 	ui->SetMenu(true);
 
 	isDead = true;

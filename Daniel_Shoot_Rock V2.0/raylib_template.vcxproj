@@ -164,7 +164,6 @@
     <ClCompile Include="Source\Asteroid.cpp" />
     <ClCompile Include="Source\AsteroidFall.cpp" />
     <ClCompile Include="Source\Bullet.cpp" />
-    <ClCompile Include="Source\ChargeBall.cpp" />
     <ClCompile Include="Source\ChargeUpAnimation.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\main.cpp" />
@@ -181,7 +180,6 @@
     <ClInclude Include="Source\Asteroid.h" />
     <ClInclude Include="Source\AsteroidFall.h" />
     <ClInclude Include="Source\Bullet.h" />
-    <ClInclude Include="Source\ChargeBall.h" />
     <ClInclude Include="Source\ChargeUpAnimation.h" />
     <ClInclude Include="Source\Core.h" />
     <ClInclude Include="Source\GameObject.h" />

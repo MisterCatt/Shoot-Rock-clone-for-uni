@@ -53,7 +53,6 @@ void Point::Move() {
 
 void Point::PickUpPoint()
 {
-	//PLAY SOUND
 	PlaySoundMulti(pickupCoinSound);
 	SetActive(false);
 }

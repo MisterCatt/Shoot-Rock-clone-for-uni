@@ -13,7 +13,7 @@ AsteroidFall::AsteroidFall()
 	isActive = true;
 
 	time = 0;
-	spawnStopTime = seconds = minutes = hours = 0;
+	spawnStopTime = seconds = 0;
 
 	stopSpawning = false;
 
@@ -86,7 +86,6 @@ void AsteroidFall::Update()
 		
 	}
 
-	//SPAWN POINTS
 	if (BulletCollision() == 1) {
 		PlaySoundMulti(destructionSound);
 	}
@@ -159,15 +158,6 @@ void AsteroidFall::Timer()
 				spawnStopTime = 0;
 			}
 		}
-	}
-	//dont know why this is here, but im going to keep it in anyways :)
-	if (seconds >= 60) {
-		minutes++;
-		seconds = 0;
-	}
-	if (minutes >= 60) {
-		hours++;
-		minutes = 0;
 	}
 }
 
