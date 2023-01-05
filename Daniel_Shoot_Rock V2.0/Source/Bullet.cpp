@@ -1,6 +1,5 @@
 #include "Bullet.h"
 
-
 Bullet::Bullet() : GameObject()
 {
 	radius = 10;
