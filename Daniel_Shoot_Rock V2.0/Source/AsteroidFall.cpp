@@ -155,6 +155,7 @@ void AsteroidFall::Timer()
 			}
 		}
 	}
+	//dont know why this is here, but im going to keep it in anyways :)
 	if (seconds >= 60) {
 		minutes++;
 		seconds = 0;

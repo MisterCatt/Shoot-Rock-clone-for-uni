@@ -18,13 +18,22 @@ UI* UI::GetInstance()
 UI::UI()
 {
 	score = 0;
-	winScore = 10;
+	winScore = 10000;
 	win = false;
 	isMenu = true;
 }
 
 UI::~UI()
 {
+	popupScore.clear();
+}
+
+void UI::Update()
+{
+	for (PopupScore* p : popupScore) {
+		if(p->IsActive())
+			p->Update();
+	}
 }
 
 void UI::Render()
@@ -32,6 +41,10 @@ void UI::Render()
 	drawBackground();
 	drawStarFall();
 	drawScore();
+
+	for (PopupScore* p : popupScore) {
+		p->DisplayScore();
+	}
 }
 
 void UI::RenderMainMenu()
@@ -61,14 +74,28 @@ void UI::drawBackground()
 	ClearBackground(BLACK);
 }
 
-void UI::AddScore(int _score)
+void UI::AddScore(int _score, Vector2 _position)
 {
 	score += _score;
+
+	for (PopupScore* p : popupScore) {
+		if (!p->IsActive()) {
+			p->UpdatePopupText(_position, _score);
+			return;
+		}
+	}
+	
+	popupScore.push_back(new PopupScore(_position, _score));
 }
 
 int UI::GetScore()
 {
 	return score;
+}
+
+int UI::GetWinScore()
+{
+	return winScore;
 }
 
 bool UI::GetMenuStatus()

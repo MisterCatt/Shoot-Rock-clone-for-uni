@@ -11,6 +11,8 @@ public:
 
 	void SpawnPoints(Vector2 _position);
 
+	int GetPickupScore();
+
 	void Update();
 	void Render();
 
@@ -22,6 +24,8 @@ private:
 	PointManager();
 
 	void PlayerCollision();
+
+	int pickupPoint, scoreMultiplier;
 
 	static PointManager* instance;
 

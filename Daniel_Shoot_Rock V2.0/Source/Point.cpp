@@ -50,6 +50,8 @@ void Point::Move() {
 
 void Point::PickUpPoint()
 {
+	//PLAY SOUND
+
 	SetActive(false);
 }
 

@@ -57,7 +57,7 @@ void Player::Render()
 
 void Player::Update()
 {
-	if (ui->GetScore() > 10) {
+	if (ui->GetScore() > ui->GetWinScore()) {
 		PlayerDied();
 	}
 

@@ -1,8 +1,8 @@
 #pragma once
 #include "Core.h"
 #include "GameObject.h"
-#include <math.h>
-#include <iostream>
+#include "UI.h"
+
 class Point : public GameObject
 {
 public:

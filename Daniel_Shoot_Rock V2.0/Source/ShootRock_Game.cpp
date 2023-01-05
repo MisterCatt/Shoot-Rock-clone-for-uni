@@ -32,6 +32,7 @@ void ShootRock_Game::update()
 		return;
 	player->Update();
 	asteroids.Update();
+	gameUI->Update();
 
 	pointManager->Update();
 

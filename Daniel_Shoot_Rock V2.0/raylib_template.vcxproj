@@ -171,6 +171,7 @@
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Point.cpp" />
     <ClCompile Include="Source\PointManager.cpp" />
+    <ClCompile Include="Source\PopupScore.cpp" />
     <ClCompile Include="Source\ShootRock_Game.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\StarFall.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point.h" />
     <ClInclude Include="Source\PointManager.h" />
+    <ClInclude Include="Source\PopupScore.h" />
     <ClInclude Include="Source\ShootRock_Game.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\StarFall.h" />

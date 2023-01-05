@@ -6,6 +6,9 @@ PointManager::PointManager()
 {
 	player = Player::GetInstance();
 	ui = UI::GetInstance();
+
+	pickupPoint = 50;
+	scoreMultiplier = 0;
 }
 
 PointManager::~PointManager()
@@ -43,6 +46,11 @@ void PointManager::SpawnPoints(Vector2 _position)
 		p->SetActive(true);
 		pointBag.push_back(p);
 	}
+}
+
+int PointManager::GetPickupScore()
+{
+	return pickupPoint + scoreMultiplier;
 }
 
 void PointManager::Update()
@@ -88,7 +96,7 @@ void PointManager::PlayerCollision()
 				(a->GetHitBox().y + a->GetHitBox().height/2 < player->GetHitBox().y - player->GetHitBox().height/2) ||
 				(a->GetHitBox().y - a->GetHitBox().height/2> player->GetHitBox().y + player->GetHitBox().height/2))) {
 				a->PickUpPoint();
-				ui->AddScore(25);
+				ui->AddScore(pickupPoint + scoreMultiplier, a->GetPosition());
 			}
 	}
 }
