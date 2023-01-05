@@ -6,11 +6,9 @@ UI* UI::GetInstance()
 {
 	if (!instance) {
 		instance = new UI();
-		std::cout << "Created new Instance" << std::endl;
 		return instance;
 	}
 	else {
-		std::cout << "Instance exists, returning old UI instance" << std::endl;
 		return instance;
 	}
 }

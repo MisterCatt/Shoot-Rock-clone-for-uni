@@ -1,6 +1,5 @@
 #pragma once
 #include "StarFall.h"
-#include <iostream>
 #include "PopupScore.h"
 
 class UI

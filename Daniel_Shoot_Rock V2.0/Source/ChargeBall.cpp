@@ -58,7 +58,7 @@ void ChargeBall::Update()
 
 void ChargeBall::Render()
 {
-	DrawCircle(position.x,position.y,radius,ballColor);
+	DrawCircle((int)position.x,(int)position.y,radius,ballColor);
 }
 
 void ChargeBall::SetBallColor(Color _color)
@@ -74,18 +74,18 @@ void ChargeBall::SetPosition(Vector2 _position)
 
 void ChargeBall::SetPosition(int _x, int _y)
 {
-	position.x = _x;
-	position.y = _y;
+	position.x = (float)_x;
+	position.y = (float)_y;
 }
 
 void ChargeBall::SetYPos(int _y)
 {
-	position.y = _y;
+	position.y = (float)_y;
 }
 
 void ChargeBall::SetXPos(int _x)
 {
-	position.x = _x;
+	position.x = (float)_x;
 }
 
 void ChargeBall::SetSpeed(float _speed)

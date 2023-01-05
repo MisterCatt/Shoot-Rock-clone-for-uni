@@ -88,11 +88,9 @@ PointManager* PointManager::GetInstance()
 {
 	if (!instance) {
 		instance = new PointManager();
-		std::cout << "Created new Instance";
 		return instance;
 	}
 	else {
-		std::cout << "Instance exists, returning old instance";
 		return instance;
 	}
 }

@@ -17,9 +17,9 @@ ChargeUpAnimation::ChargeUpAnimation(Vector2 _position)
 	ballMinRadius = 20;
 	ballMaxRadius = 40;
 
-	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE});
-	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, false, BLUE});
-	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, true, DARKBLUE});
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue((int)minX, (int)maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE});
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue((int)minX, (int)maxX) , _position.y - ballMaxRadius, false, BLUE});
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue((int)minX, (int)maxX) , _position.y - ballMaxRadius, true, DARKBLUE});
 }
 
 ChargeUpAnimation::~ChargeUpAnimation()
@@ -32,7 +32,7 @@ void ChargeUpAnimation::Render()
 	if (!charging)
 		return;
 	for (ball* b : balls) {
-		DrawCircle(b->x, b->y, b->radius, b->col);
+		DrawCircle((int)b->x, (int)b->y, b->radius, b->col);
 	}
 }
 
@@ -92,7 +92,7 @@ void ChargeUpAnimation::Reset(Vector2 _position)
 	minX = middlePoint.x - dif;
 	maxX = middlePoint.x + dif;
 
-	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue(minX, maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE });
+	balls.push_back(new ball{ ballMaxRadius, (float)GetRandomValue((int)minX, (int)maxX) , _position.y - ballMaxRadius, (bool)GetRandomValue(0,1), WHITE });
 	balls.push_back(new ball{ ballMaxRadius, minX , _position.y - ballMaxRadius, false, BLUE });
 	balls.push_back(new ball{ ballMaxRadius, maxX , _position.y - ballMaxRadius, true, DARKBLUE });
 

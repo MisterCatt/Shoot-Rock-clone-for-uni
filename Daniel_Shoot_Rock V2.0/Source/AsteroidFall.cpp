@@ -37,7 +37,6 @@ int AsteroidFall::PlayerCollision()
 				(a->GetHitBox().y - a->GetHitBox().height / 2 > player->GetHitBox().y + player->GetHitBox().height / 2))) {
 				if (!IsSoundPlaying(destructionSound))
 				PlaySoundMulti(destructionSound);
-				std::cout << "PLAY DESTRO SOUND 1" << std::endl;
 				a->DestroyAsteroid();
 				return 1;
 		}
@@ -83,7 +82,6 @@ void AsteroidFall::Update()
 	
 
 	if (PlayerCollision() == 1) {
-		std::cout << "ded!" << std::endl;
 		player->PlayerDied();
 		
 	}

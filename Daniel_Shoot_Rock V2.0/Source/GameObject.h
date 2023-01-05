@@ -1,6 +1,5 @@
 #pragma once
 #include "Core.h"
-#include <iostream>
 
 class GameObject
 {
@@ -24,9 +23,6 @@ public:
 	virtual void SetSpeed(float _speed);
 	virtual float GetSpeed();
 
-	virtual std::string ToString();
-	virtual const char* ToChar();
-
 	virtual void SetTexture(std::string _filePath);
 	virtual void SetTexture(const char* _filePath);
 
@@ -40,8 +36,6 @@ protected:
 	Vector2 _Position;
 
 	Texture2D _Texture;
-
-	std::string _Name;
 
 };
 

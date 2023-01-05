@@ -3,7 +3,6 @@
 #include "Asteroid.h"
 #include "Player.h"
 #include "PointManager.h"
-#include <iostream>
 
 class AsteroidFall
 {

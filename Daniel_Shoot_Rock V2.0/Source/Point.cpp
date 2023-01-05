@@ -9,7 +9,7 @@ Point::Point()
 
 	maxHeight = 0;
 
-	angle = GetRandomValue(135, 225);
+	angle = (float)GetRandomValue(135, 225);
 
 	SetActive(false);
 
@@ -63,7 +63,7 @@ void Point::Render()
 	if (!IsActive())
 		return;
 
-	DrawCircle(_Position.x, _Position.y, radius, RED);
+	DrawCircle((int)_Position.x, (int)_Position.y, radius, RED);
 
 	if (IsKeyDown(KEY_P)) {
 		DrawHitbox();
@@ -96,7 +96,7 @@ void Point::DrawHitbox()
 
 void Point::Reset()
 {
-	angle = GetRandomValue(135, 225);
+	angle = (float)GetRandomValue(135, 225);
 	goingUp = true;
 	SetSpeed(5);
 }

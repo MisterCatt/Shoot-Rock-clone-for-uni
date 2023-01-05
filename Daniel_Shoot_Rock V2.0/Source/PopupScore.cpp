@@ -16,7 +16,7 @@ PopupScore::~PopupScore()
 void PopupScore::DisplayScore()
 {
 	if(isActive)
-		DrawText(std::to_string(score).c_str(), position.x, position.y, 25, YELLOW);
+		DrawText(std::to_string(score).c_str(), (int)position.x, (int)position.y, 25, YELLOW);
 }
 
 void PopupScore::UpdatePopupText(Vector2 _position, int _score)

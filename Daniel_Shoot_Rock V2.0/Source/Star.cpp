@@ -2,9 +2,9 @@
 
 Star::Star()
 {
-	starPosition.x = GetRandomValue(0, GetScreenWidth());
-	starPosition.y = (GetRandomValue(0, GetScreenHeight()));
-	angle = GetRandomValue(-5, 5);
+	starPosition.x = (float)GetRandomValue(0, GetScreenWidth());
+	starPosition.y = (float)GetRandomValue(0, GetScreenHeight());
+	angle = (float)GetRandomValue(-5, 5);
 
 	speed = 15;
 
@@ -12,7 +12,7 @@ Star::Star()
 
 	frameCount = 0;
 
-	starSize = (GetScreenWidth() / 384 + GetScreenHeight() / 384);
+	starSize = (float)(GetScreenWidth() / 384 + GetScreenHeight() / 384);
 
 	right = true;
 }
@@ -61,16 +61,16 @@ void Star::WorldWrap()
 {
 	if (starPosition.y > GetScreenHeight()) {
 		starPosition.y = 0;
-		starPosition.x = GetRandomValue(0, GetScreenWidth());
+		starPosition.x = (float)GetRandomValue(0, GetScreenWidth());
 
 
-		angle = GetRandomValue(-5, 5);
+		angle = (float)GetRandomValue(-5, 5);
 	}
 
 	if (starPosition.x > GetScreenWidth()) {
 		starPosition.x = 0;
 	}
 	if (starPosition.x < 0) {
-		starPosition.x = GetScreenWidth();
+		starPosition.x = (float)GetScreenWidth();
 	}
 }

@@ -6,11 +6,9 @@ Player* Player::GetInstance()
 {
 	if (!instance) {
 		instance = new Player();
-		std::cout << "Created new Instance";
 		return instance;
 	}
 	else {
-		std::cout << "Instance exists, returning old instance";
 		return instance;
 	}
 }
@@ -114,8 +112,6 @@ void Player::Input()
 		
 		dif = (newTime - oldTime);
 
-		std::cout << dif << std::endl;
-
 		anim->Reset(GetPosition());
 		charging = false;
 		if (dif >= shootCoolDown) {
@@ -136,7 +132,6 @@ void Player::Shoot()
 		else
 			b->SetPosition({ 0,0 });
 		BulletBag.push_back(b);
-		std::cout << "Shoot" << std::endl;
 	}
 	else {
 		for (Bullet* b : BulletBag) {
@@ -158,7 +153,6 @@ void Player::Shoot()
 			else
 				b->SetPosition({ 0,0 });
 			BulletBag.push_back(b);
-			std::cout << "Shoot" << std::endl;
 		}
 
 	}

@@ -10,7 +10,7 @@ Asteroid::Asteroid() : GameObject()
 
 	SetPosition(Vector2{ (float)GetRandomValue(0, GetScreenWidth()), 100});
 
-	angle = GetRandomValue(315,405);
+	angle = (float)GetRandomValue(315,405);
 }
 
 Asteroid::~Asteroid()
@@ -79,11 +79,11 @@ void Asteroid::DestroyAsteroid()
 
 void Asteroid::WorldWrap()
 {
-	if (_Position.y > GetScreenHeight() + 400)
+	if (_Position.y > (float)GetScreenHeight() + 400)
 		SetActive(false);
 
-	if (_Position.x > GetScreenWidth() + 50)
+	if (_Position.x > (float)GetScreenWidth() + 50)
 		_Position.x = 0;
 	if (_Position.x < 0)
-		_Position.x = GetScreenWidth();
+		_Position.x = (float)GetScreenWidth();
 }

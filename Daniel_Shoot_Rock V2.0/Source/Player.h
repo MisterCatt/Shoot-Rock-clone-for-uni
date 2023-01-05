@@ -1,6 +1,5 @@
 #pragma once
 #include "GameObject.h"
-#include <iostream>
 #include "Bullet.h"
 #include "UI.h"
 #include "ChargeUpAnimation.h"

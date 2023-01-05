@@ -1,5 +1,4 @@
 #pragma once
-#include "Core.h"
 #include "GameObject.h"
 #include "UI.h"
 

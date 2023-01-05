@@ -34,9 +34,9 @@ void Bullet::Render()
 {
 	if (!IsActive())
 		return;
-	DrawCircle(GetPosition().x-5, GetPosition().y,radius, DARKBLUE);
-	DrawCircle(GetPosition().x+5, GetPosition().y,radius, BLUE);
-	DrawCircle(GetPosition().x, GetPosition().y,radius, WHITE);
+	DrawCircle((int)GetPosition().x-5, (int)GetPosition().y,radius, DARKBLUE);
+	DrawCircle((int)GetPosition().x+5, (int)GetPosition().y,radius, BLUE);
+	DrawCircle((int)GetPosition().x, (int)GetPosition().y,radius, WHITE);
 
 }
 

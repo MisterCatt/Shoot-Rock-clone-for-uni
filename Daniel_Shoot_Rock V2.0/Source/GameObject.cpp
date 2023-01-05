@@ -7,8 +7,6 @@ GameObject::GameObject()
 	_IsActive = false;
 
 	_Position = { 0,0 };
-
-	_Name = "name";
 }
 
 GameObject::~GameObject()
@@ -59,16 +57,6 @@ void GameObject::SetSpeed(float _speed)
 float GameObject::GetSpeed()
 {
 	return _Speed;
-}
-
-std::string GameObject::ToString()
-{
-	return _Name;
-}
-
-const char* GameObject::ToChar()
-{
-	return _Name.c_str();
 }
 
 void GameObject::SetTexture(std::string _filePath)
