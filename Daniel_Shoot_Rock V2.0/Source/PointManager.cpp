@@ -9,6 +9,8 @@ PointManager::PointManager()
 
 	pickupPoint = 50;
 	scoreMultiplier = 0;
+
+	pickupTime = 100;
 }
 
 PointManager::~PointManager()
@@ -59,6 +61,12 @@ void PointManager::Update()
 		p->Update();
 	}
 	PlayerCollision();
+
+	pickupTime += GetFrameTime();
+
+	if (pickupTime > 1) {
+		scoreMultiplier = 0;
+	}
 }
 
 void PointManager::Render()
@@ -97,6 +105,8 @@ void PointManager::PlayerCollision()
 				(a->GetHitBox().y - a->GetHitBox().height/2> player->GetHitBox().y + player->GetHitBox().height/2))) {
 				a->PickUpPoint();
 				ui->AddScore(pickupPoint + scoreMultiplier, a->GetPosition());
+				scoreMultiplier += 10;
+				pickupTime = 0;
 			}
 	}
 }

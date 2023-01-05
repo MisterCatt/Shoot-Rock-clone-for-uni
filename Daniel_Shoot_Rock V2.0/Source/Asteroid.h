@@ -20,7 +20,10 @@ public:
 
 	void DestroyAsteroid();
 
+	void Move();
+
 	void WorldWrap();
 private:
+	float angle;
 };
 

@@ -21,7 +21,7 @@ Player::Player() {
 
 	ui = UI::GetInstance();
 
-	shootCoolDown = 0.5f;
+	shootCoolDown = 0.8f;
 
 	chargeTime = newTime = oldTime = dif = 0;
 

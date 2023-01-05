@@ -27,6 +27,8 @@ private:
 
 	int pickupPoint, scoreMultiplier;
 
+	float pickupTime;
+
 	static PointManager* instance;
 
 	Player* player;

@@ -53,7 +53,7 @@ void ChargeUpAnimation::Update(Vector2 _position)
 		else
 			b->x -= speed;
 
-		b->y = _position.y - 50;
+		b->y = _position.y - 40;
 	}
 
 	middlePoint = _position;
@@ -62,13 +62,13 @@ void ChargeUpAnimation::Update(Vector2 _position)
 
 	if (charging)
 	{
-		if (dif > 8) {
-			dif--;
+		if (dif > 5) {
+			dif-=0.5f;
 		}
 
 		for (ball* b : balls) {
 			if (b->radius > ballMinRadius) {
-				b->radius--;
+				b->radius-=0.5f;
 			}
 		}
 	}
