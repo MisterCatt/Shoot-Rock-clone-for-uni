@@ -21,7 +21,7 @@ private:
 	void resetGame();
 
 	UI* gameUI;
-	AsteroidFall asteroids;
+	AsteroidFall* asteroids;
 
 	Player* player;
 

@@ -17,12 +17,13 @@ AsteroidFall::AsteroidFall()
 
 	stopSpawning = false;
 
-	
+	destructionSound = LoadSound("Assets/DestructionSound.wav");
 }
 
 AsteroidFall::~AsteroidFall()
 {
 	asteroidBag.clear();
+	UnloadSound(destructionSound);
 }
 
 int AsteroidFall::PlayerCollision()
@@ -34,6 +35,9 @@ int AsteroidFall::PlayerCollision()
 				(a->GetHitBox().x - a->GetHitBox().width / 2 > player->GetHitBox().x + player->GetHitBox().width / 2) ||
 				(a->GetHitBox().y + a->GetHitBox().height / 2 < player->GetHitBox().y - player->GetHitBox().height / 2) ||
 				(a->GetHitBox().y - a->GetHitBox().height / 2 > player->GetHitBox().y + player->GetHitBox().height / 2))) {
+				if (!IsSoundPlaying(destructionSound))
+				PlaySoundMulti(destructionSound);
+				std::cout << "PLAY DESTRO SOUND 1" << std::endl;
 				a->DestroyAsteroid();
 				return 1;
 		}
@@ -81,10 +85,13 @@ void AsteroidFall::Update()
 	if (PlayerCollision() == 1) {
 		std::cout << "ded!" << std::endl;
 		player->PlayerDied();
+		
 	}
 
 	//SPAWN POINTS
-	BulletCollision();
+	if (BulletCollision() == 1) {
+		PlaySoundMulti(destructionSound);
+	}
 }
 
 void AsteroidFall::Render()

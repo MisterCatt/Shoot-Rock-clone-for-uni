@@ -9,6 +9,7 @@ int main(void)
     const int screenHeight = 960;
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    InitAudioDevice();
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
+    CloseAudioDevice();
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------
     delete Game;

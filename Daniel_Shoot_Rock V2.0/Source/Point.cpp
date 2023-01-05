@@ -12,10 +12,13 @@ Point::Point()
 	angle = GetRandomValue(135, 225);
 
 	SetActive(false);
+
+	pickupCoinSound = LoadSound("Assets/CoinPickupSound.wav");
 }
 
 Point::~Point()
 {
+	UnloadSound(pickupCoinSound);
 }
 
 void Point::Update()
@@ -51,7 +54,7 @@ void Point::Move() {
 void Point::PickUpPoint()
 {
 	//PLAY SOUND
-
+	PlaySoundMulti(pickupCoinSound);
 	SetActive(false);
 }
 

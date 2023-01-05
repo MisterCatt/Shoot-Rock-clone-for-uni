@@ -30,5 +30,5 @@ private:
 	float radius,angle, maxHeight;
 
 	bool goingUp;
-
+	Sound pickupCoinSound;
 };

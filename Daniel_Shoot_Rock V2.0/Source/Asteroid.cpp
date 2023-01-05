@@ -74,9 +74,6 @@ void Asteroid::SpawnAsteroid()
 
 void Asteroid::DestroyAsteroid()
 {
-	//Play Animation
-
-
 	SetActive(false);
 }
 

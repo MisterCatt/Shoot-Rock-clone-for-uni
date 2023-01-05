@@ -31,12 +31,12 @@ public:
 
 private:
 	
-
 	Player();
 	
 	static Player* instance;
 
 	UI* ui;
+	Sound chargeUpSound,ShootSound;
 	
 	ChargeUpAnimation* anim;
 

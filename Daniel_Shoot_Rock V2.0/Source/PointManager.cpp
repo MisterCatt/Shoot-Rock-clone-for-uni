@@ -11,11 +11,14 @@ PointManager::PointManager()
 	scoreMultiplier = 0;
 
 	pickupTime = 100;
+
+	
 }
 
 PointManager::~PointManager()
 {
 	pointBag.clear();
+	
 }
 
 void PointManager::SpawnPoints(Vector2 _position)
@@ -99,6 +102,7 @@ void PointManager::PlayerCollision()
 	for (Point* a : pointBag) {
 
 		if (a->IsActive())
+			if(player->IsActive())
 			if (!((a->GetHitBox().x + a->GetHitBox().width < player->GetHitBox().x - player->GetHitBox().width) ||
 				(a->GetHitBox().x - a->GetHitBox().width > player->GetHitBox().x + player->GetHitBox().width) ||
 				(a->GetHitBox().y + a->GetHitBox().height/2 < player->GetHitBox().y - player->GetHitBox().height/2) ||
@@ -106,7 +110,7 @@ void PointManager::PlayerCollision()
 				a->PickUpPoint();
 				ui->AddScore(pickupPoint + scoreMultiplier, a->GetPosition());
 				scoreMultiplier += 10;
-				pickupTime = 0;
+				pickupTime = 0;				
 			}
 	}
 }

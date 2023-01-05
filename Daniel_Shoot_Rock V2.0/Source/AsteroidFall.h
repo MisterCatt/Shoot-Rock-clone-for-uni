@@ -3,6 +3,7 @@
 #include "Asteroid.h"
 #include "Player.h"
 #include "PointManager.h"
+#include <iostream>
 
 class AsteroidFall
 {
@@ -39,5 +40,7 @@ private:
 	int seconds, minutes, hours, spawnStopTime;
 
 	PointManager* pointManager;
+
+	Sound destructionSound;
 };
 

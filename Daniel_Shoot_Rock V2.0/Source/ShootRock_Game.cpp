@@ -8,6 +8,8 @@ ShootRock_Game::ShootRock_Game()
 	gameUI = UI::GetInstance();
 	gameUI->ResetScore();
 
+	asteroids = new AsteroidFall();
+
 }
 
 ShootRock_Game::~ShootRock_Game()
@@ -18,6 +20,8 @@ ShootRock_Game::~ShootRock_Game()
 	gameUI = nullptr;
 	delete pointManager;
 	pointManager = nullptr;
+	delete asteroids;
+	asteroids = nullptr;
 }
 
 void ShootRock_Game::Run()
@@ -31,7 +35,7 @@ void ShootRock_Game::update()
 	if (gameUI->GetMenuStatus())
 		return;
 	player->Update();
-	asteroids.Update();
+	asteroids->Update();
 	gameUI->Update();
 
 	pointManager->Update();
@@ -50,7 +54,7 @@ void ShootRock_Game::render()
 
 	gameUI->Render();
 	player->Render();
-	asteroids.Render();
+	asteroids->Render();
 
 	pointManager->Render();
 
@@ -61,5 +65,6 @@ void ShootRock_Game::resetGame() {
 	gameUI->Reset();
 	pointManager->Reset();
 
-	asteroids = AsteroidFall();
+	delete asteroids;
+	asteroids = new AsteroidFall();
 }

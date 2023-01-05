@@ -29,13 +29,17 @@ Player::Player() {
 	noBullets = true;
 
 	anim = new ChargeUpAnimation(GetPosition());
-
+	chargeUpSound = LoadSound("Assets/ChargeSound.wav");
+	ShootSound = LoadSound("Assets/ShootSound.wav");
 }
 
 Player::~Player()
 {
 	delete anim;
 	anim = nullptr;
+
+	UnloadSound(chargeUpSound);
+	UnloadSound(ShootSound);
 }
 
 void Player::Render()
@@ -101,9 +105,11 @@ void Player::Input()
 		oldTime = GetTime();
 		anim->Charge();
 
+		PlaySoundMulti(chargeUpSound);
+
 		charging = true;
 	}
-	if (IsKeyReleased(KEY_Z)) {
+	if (IsKeyReleased(KEY_Z) && IsActive()) {
 		newTime = GetTime();
 		
 		dif = (newTime - oldTime);
@@ -112,8 +118,11 @@ void Player::Input()
 
 		anim->Reset(GetPosition());
 		charging = false;
-		if (dif >= shootCoolDown)
+		if (dif >= shootCoolDown) {
+			if(!isDead)
 			Shoot();
+			PlaySoundMulti(ShootSound);
+		}
 	}
 	
 }
@@ -122,7 +131,10 @@ void Player::Shoot()
 {
 	if (BulletBag.empty()) {
 		Bullet* b = new Bullet();
-		b->SetPosition(GetPosition());
+		if (!isDead)
+			b->SetPosition(GetPosition());
+		else
+			b->SetPosition({ 0,0 });
 		BulletBag.push_back(b);
 		std::cout << "Shoot" << std::endl;
 	}
@@ -130,7 +142,10 @@ void Player::Shoot()
 		for (Bullet* b : BulletBag) {
 			if (!b->IsActive()) {
 				b->Reset();
-				b->SetPosition(GetPosition());
+				if (!isDead)
+					b->SetPosition(GetPosition());
+				else
+					b->SetPosition({0,0});
 				b->SetActive(true);
 				return;
 			}
@@ -138,7 +153,10 @@ void Player::Shoot()
 		}
 		if (noBullets) {
 			Bullet* b = new Bullet();
-			b->SetPosition(GetPosition());
+			if (!isDead)
+				b->SetPosition(GetPosition());
+			else
+				b->SetPosition({ 0,0 });
 			BulletBag.push_back(b);
 			std::cout << "Shoot" << std::endl;
 		}
@@ -178,6 +196,10 @@ void Player::DrawHitbox()
 
 void Player::Reset()
 {
+	for (Bullet* b : BulletBag)
+		if (b->IsActive())
+			b->SetActive(false);
+
 	BulletBag.clear();
 	SpawnPlayer();
 }

@@ -33,4 +33,6 @@ private:
 
 	Player* player;
 	UI* ui;
+
+	
 };
