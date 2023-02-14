@@ -23,6 +23,7 @@ void GameManager::AddSound(std::string name, Sound sound)
 void GameManager::PlaySound(std::string name)
 {
 	PlaySoundMulti(sounds.at(name));
+	std::cout << "PlayedSound: " << name << std::endl;
 }
 
 void GameManager::DrawTexture(std::string name, float angle, int x, int y)

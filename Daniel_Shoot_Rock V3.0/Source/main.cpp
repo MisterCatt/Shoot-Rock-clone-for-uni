@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "GameManager.h"
+#include "Game.h"
 
 int main(void)
 {    
@@ -15,8 +16,8 @@ int main(void)
 
     GameManager gm;
 
-    Texture2D Asteroid, SpaceShip, Star;
-    Sound ChargeSound, CoinPickupSound, DestructionSound, ShootSound;
+    static Texture2D Asteroid, SpaceShip, Star;
+    static Sound ChargeSound, CoinPickupSound, DestructionSound, ShootSound;
 
     Asteroid = LoadTexture("Assets/Asteroid.png");
     SpaceShip = LoadTexture("Assets/SpaceShip.png");
@@ -32,13 +33,18 @@ int main(void)
     gm.AddSound("Destruction", DestructionSound);
     gm.AddSound("Shoot", ShootSound);
 
+    gm.AddTexture("Asteroid", Asteroid);
+    gm.AddTexture("SpaceShip", SpaceShip);
+    gm.AddTexture("Star", Star);
+
+    Game ShootRock;
+
+    ShootRock.AddGameManager(gm);
+
     while (!WindowShouldClose())
     {
-
         // Draw
         BeginDrawing();
-
-        gm.Input();
 
         EndDrawing();
     }
@@ -51,8 +57,6 @@ int main(void)
     UnloadSound(CoinPickupSound);
     UnloadSound(DestructionSound);
     UnloadSound(ShootSound);
-
-    gm.~GameManager();
 
     CloseAudioDevice();
     CloseWindow();
