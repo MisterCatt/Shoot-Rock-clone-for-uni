@@ -22,6 +22,8 @@ ShootRock_Game::~ShootRock_Game()
 	pointManager = nullptr;
 	delete asteroids;
 	asteroids = nullptr;
+
+	UnloadSound(pickupCoinSound);
 }
 
 void ShootRock_Game::Run()
@@ -38,7 +40,7 @@ void ShootRock_Game::update()
 	asteroids->Update();
 	gameUI->Update();
 
-	pointManager->Update();
+	pointManager->Update(pickupCoinSound);
 
 	if (player->IsDead() && IsKeyDown(KEY_X))
 		resetGame();

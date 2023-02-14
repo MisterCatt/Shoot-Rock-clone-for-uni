@@ -26,5 +26,7 @@ private:
 
 	PointManager* pointManager;
 
+	Sound pickupCoinSound = LoadSound("Assets/CoinPickupSound.wav");
+
 };
 

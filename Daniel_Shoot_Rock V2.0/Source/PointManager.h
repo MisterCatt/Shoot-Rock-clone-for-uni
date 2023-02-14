@@ -14,7 +14,7 @@ public:
 
 	int GetPickupScore();
 
-	void Update();
+	void Update(Sound& s);
 	void Render();
 
 	void Reset();
@@ -24,7 +24,7 @@ public:
 private:
 	PointManager();
 
-	void PlayerCollision();
+	void PlayerCollision(Sound& s);
 
 	int pickupPoint, scoreMultiplier;
 

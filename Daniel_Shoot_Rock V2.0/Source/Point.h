@@ -16,7 +16,7 @@ public:
 
 	void Move();
 
-	void PickUpPoint();
+	void PickUpPoint( Sound& s);
 
 	void Reset();
 
@@ -27,5 +27,5 @@ private:
 	float radius,angle, maxHeight;
 
 	bool goingUp;
-	Sound pickupCoinSound;
+	
 };
