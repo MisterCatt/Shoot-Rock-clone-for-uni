@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.h"
+#include "GameManager.h"
 
 class GameObject
 {
@@ -23,19 +24,18 @@ public:
 	virtual void SetSpeed(float _speed);
 	virtual float GetSpeed();
 
-	virtual void SetTexture(std::string _filePath);
-	virtual void SetTexture(const char* _filePath);
+	virtual Rectangle GetHitBox(std::string);
 
-	virtual Rectangle GetHitBox();
+	virtual void AddGameManager(GameManager&);
 protected:
+
+	GameManager gm;
 
 	float _Angle, _Speed;
 
 	bool _IsActive;
 
 	Vector2 _Position;
-
-	Texture2D _Texture;
 
 };
 

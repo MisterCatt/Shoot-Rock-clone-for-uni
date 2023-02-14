@@ -16,7 +16,7 @@ public:
 
 	void Move();
 
-	void PickUpPoint( Sound& s);
+	void PickUpPoint();
 
 	void Reset();
 

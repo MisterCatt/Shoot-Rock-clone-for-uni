@@ -25,6 +25,8 @@ public:
 
 	void StopSpawning();
 
+	void AddManager(GameManager& gm);
+
 private:
 	int totalAsteroids;
 	float spawnTimer, timerCurrent;
@@ -40,6 +42,6 @@ private:
 
 	PointManager* pointManager;
 
-	Sound destructionSound;
+	GameManager gm;
 };
 

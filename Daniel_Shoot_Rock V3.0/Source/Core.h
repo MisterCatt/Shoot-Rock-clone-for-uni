@@ -3,3 +3,5 @@
 #include <raylib.h>
 #include <math.h>
 #include <map>
+#include <list>
+#include <string>

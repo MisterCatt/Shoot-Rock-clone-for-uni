@@ -60,12 +60,12 @@ int PointManager::GetPickupScore()
 	return pickupPoint + scoreMultiplier;
 }
 
-void PointManager::Update(Sound& s)
+void PointManager::Update()
 {
 	for (Point* p : pointBag) {
 		p->Update();
 	}
-	PlayerCollision(s);
+	PlayerCollision();
 
 	pickupTime += GetFrameTime();
 
@@ -97,17 +97,17 @@ PointManager* PointManager::GetInstance()
 	}
 }
 
-void PointManager::PlayerCollision(Sound& s)
+void PointManager::PlayerCollision()
 {
 	for (Point* a : pointBag) {
 
 		if (a->IsActive())
 			if(player->IsActive())
-			if (!((a->GetHitBox().x + a->GetHitBox().width < player->GetHitBox().x - player->GetHitBox().width) ||
-				(a->GetHitBox().x - a->GetHitBox().width > player->GetHitBox().x + player->GetHitBox().width) ||
-				(a->GetHitBox().y + a->GetHitBox().height/2 < player->GetHitBox().y - player->GetHitBox().height/2) ||
-				(a->GetHitBox().y - a->GetHitBox().height/2> player->GetHitBox().y + player->GetHitBox().height/2))) {
-				a->PickUpPoint(s);
+			if (!((a->GetHitBox().x + a->GetHitBox().width < player->GetHitBox("Player").x - player->GetHitBox("Player").width) ||
+				(a->GetHitBox().x - a->GetHitBox().width > player->GetHitBox("Player").x + player->GetHitBox("Player").width) ||
+				(a->GetHitBox().y + a->GetHitBox().height/2 < player->GetHitBox("Player").y - player->GetHitBox("Player").height/2) ||
+				(a->GetHitBox().y - a->GetHitBox().height/2> player->GetHitBox("Player").y + player->GetHitBox("Player").height/2))) {
+				a->PickUpPoint();
 				ui->AddScore(pickupPoint + scoreMultiplier, a->GetPosition());
 				scoreMultiplier += 10;
 				pickupTime = 0;				

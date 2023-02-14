@@ -16,8 +16,6 @@ AsteroidFall::AsteroidFall()
 	spawnStopTime = seconds = 0;
 
 	stopSpawning = false;
-
-	destructionSound = LoadSound("Assets/DestructionSound.wav");
 }
 
 AsteroidFall::~AsteroidFall()
@@ -27,7 +25,6 @@ AsteroidFall::~AsteroidFall()
 		a = nullptr;
 	}
 	asteroidBag.clear();
-	UnloadSound(destructionSound);
 }
 
 int AsteroidFall::PlayerCollision()
@@ -35,12 +32,12 @@ int AsteroidFall::PlayerCollision()
 	for (Asteroid* a : asteroidBag) {
 		
 		if(a->IsActive())
-			if (!((a->GetHitBox().x + a->GetHitBox().width / 2 < player->GetHitBox().x - player->GetHitBox().width / 2) ||
-				(a->GetHitBox().x - a->GetHitBox().width / 2 > player->GetHitBox().x + player->GetHitBox().width / 2) ||
-				(a->GetHitBox().y + a->GetHitBox().height / 2 < player->GetHitBox().y - player->GetHitBox().height / 2) ||
-				(a->GetHitBox().y - a->GetHitBox().height / 2 > player->GetHitBox().y + player->GetHitBox().height / 2))) {
-				if (!IsSoundPlaying(destructionSound))
-				PlaySoundMulti(destructionSound);
+			if (!((a->GetHitBox("Asteroid").x + a->GetHitBox("Asteroid").width / 2 < player->GetHitBox("Player").x - player->GetHitBox("Player").width / 2) ||
+				(a->GetHitBox("Asteroid").x - a->GetHitBox("Asteroid").width / 2 > player->GetHitBox("Player").x + player->GetHitBox("Player").width / 2) ||
+				(a->GetHitBox("Asteroid").y + a->GetHitBox("Asteroid").height / 2 < player->GetHitBox("Player").y - player->GetHitBox("Player").height / 2) ||
+				(a->GetHitBox("Asteroid").y - a->GetHitBox("Asteroid").height / 2 > player->GetHitBox("Player").y + player->GetHitBox("Player").height / 2))) {
+				if (!IsSoundPlaying(gm.sounds.at("Destruction")))
+					gm.PlaySound("Destruction");
 				a->DestroyAsteroid();
 				return 1;
 		}
@@ -91,7 +88,7 @@ void AsteroidFall::Update()
 	}
 
 	if (BulletCollision() == 1) {
-		PlaySoundMulti(destructionSound);
+		gm.PlaySound("Destruction");
 	}
 }
 
@@ -110,6 +107,7 @@ void AsteroidFall::SpawnAsteroids()
 
 	if (asteroidBag.empty()) {
 		asteroidBag.push_back(new Asteroid());
+		asteroidBag.back()->AddManager(gm);
 	}
 
 	spawned = false;
@@ -127,6 +125,7 @@ void AsteroidFall::SpawnAsteroids()
 		if (!spawned) {
 			asteroidBag.push_back(new Asteroid());
 			asteroidBag.back()->SpawnAsteroid();
+			asteroidBag.back()->AddManager(gm);
 			spawned = true;
 		}
 		timerCurrent = 0;
@@ -168,6 +167,11 @@ void AsteroidFall::StopSpawning()
 		if(spawnTimer >= 0.05)
 		spawnTimer -= (spawnTimer / 10.0f);
 	}
+}
+
+void AsteroidFall::AddManager(GameManager& _gm)
+{
+	gm = _gm;
 }
 
 

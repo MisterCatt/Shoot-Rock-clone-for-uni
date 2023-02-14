@@ -40,7 +40,7 @@ void ShootRock_Game::update()
 	asteroids->Update();
 	gameUI->Update();
 
-	pointManager->Update(pickupCoinSound);
+	pointManager->Update();
 
 	if (player->IsDead() && IsKeyDown(KEY_X))
 		resetGame();

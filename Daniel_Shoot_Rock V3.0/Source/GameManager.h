@@ -16,11 +16,12 @@ public:
 	void Input();
 
 	std::map<std::string, Sound> sounds;
+	std::map<std::string, Texture2D> textures;
 
 private:
 
 	
-	std::map<std::string, Texture2D> textures;
+	
 
 };
 

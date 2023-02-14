@@ -11,7 +11,6 @@ GameObject::GameObject()
 
 GameObject::~GameObject()
 {
-	UnloadTexture(_Texture);
 }
 
 Vector2 GameObject::GetPosition()
@@ -59,17 +58,14 @@ float GameObject::GetSpeed()
 	return _Speed;
 }
 
-void GameObject::SetTexture(std::string _filePath)
+
+Rectangle GameObject::GetHitBox(std::string type)
 {
-	_Texture = LoadTexture(_filePath.c_str());
+	return Rectangle{GetPosition().x - gm.textures.at(type).width / 2,GetPosition().y - gm.textures.at(type).height / 2, (float)gm.textures.at(type).width, (float)gm.textures.at(type).height };
+	//return Rectangle{ GetPosition().x - _Texture.width / 2, GetPosition().y - _Texture.height / 2, (float)_Texture.width, (float)_Texture.height};
 }
 
-void GameObject::SetTexture(const char* _filePath)
+void GameObject::AddGameManager(GameManager& _gm)
 {
-	_Texture = LoadTexture(_filePath);
-}
-
-Rectangle GameObject::GetHitBox()
-{
-	return Rectangle{ GetPosition().x - _Texture.width / 2, GetPosition().y - _Texture.height / 2, (float)_Texture.width, (float)_Texture.height};
+	gm = _gm;
 }

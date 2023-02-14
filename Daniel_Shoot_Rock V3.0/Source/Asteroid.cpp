@@ -2,8 +2,6 @@
 
 Asteroid::Asteroid() : GameObject()
 {
-	SetTexture("Assets/Asteroid.png");
-
 	SetSpeed(10);
 	
 	SetActive(false);
@@ -22,14 +20,7 @@ void Asteroid::Render()
 	if (!IsActive())
 		return;
 
-	DrawTexturePro(
-		_Texture,
-		Rectangle{ 0.0f, 0.0f, (float)_Texture.width, (float)_Texture.height },
-		Rectangle{ _Position.x,_Position.y,
-		(float)_Texture.width, (float)_Texture.height },
-		Vector2{ (float)_Texture.width / 2, (float)_Texture.height / 2 },
-		GetAngle(),
-		WHITE);
+	gm.DrawTexture("Asteroid", angle, (int)_Position.x, (int)_Position.y);
 }
 
 void Asteroid::Update()
@@ -77,4 +68,9 @@ void Asteroid::WorldWrap()
 		_Position.x = 0;
 	if (_Position.x < 0)
 		_Position.x = (float)GetScreenWidth();
+}
+
+void Asteroid::AddManager(GameManager& _gm)
+{
+	gm = _gm;
 }

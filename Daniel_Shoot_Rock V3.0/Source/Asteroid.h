@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject.h"
 #include "Point.h"
+#include "GameManager.h"
 
 class Asteroid : public GameObject
 {
@@ -18,7 +19,11 @@ public:
 	void Move();
 
 	void WorldWrap();
+
+	void AddManager(GameManager&);
 private:
 	float angle;
+
+	GameManager gm;
 };
 

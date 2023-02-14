@@ -1,6 +1,10 @@
 #pragma once
 #include "Core.h"
 #include "GameManager.h"
+#include "UI.h"
+#include "Player.h"
+#include "AsteroidFall.h"
+#include "PointManager.h"
 
 class Game
 {
@@ -14,8 +18,17 @@ public:
 
 private:
 
-	void Update();
-	void Render();
+	void update();
+	void render();
+
+	void resetGame();
+
+	UI* gameUI;
+	AsteroidFall* asteroids;
+
+	Player* player;
+
+	PointManager* pointManager;
 
 	GameManager gm;
 

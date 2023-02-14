@@ -49,9 +49,8 @@ void Point::Move() {
 
 }
 
-void Point::PickUpPoint(Sound& s)
+void Point::PickUpPoint()
 {
-	PlaySoundMulti(s);
 	SetActive(false);
 }
 

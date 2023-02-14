@@ -11,7 +11,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "The Event Loop of Life");
     InitAudioDevice();
 
-    // SetTargetFPS(60); // Uncomment this if you want to use fixed framerate (I suggest using vsync)
+    SetTargetFPS(60); // Uncomment this if you want to use fixed framerate (I suggest using vsync)
     // SetExitKey(0);    // Uncomment this to disable ESC as exit key
 
     GameManager gm;
@@ -34,7 +34,7 @@ int main(void)
     gm.AddSound("Shoot", ShootSound);
 
     gm.AddTexture("Asteroid", Asteroid);
-    gm.AddTexture("SpaceShip", SpaceShip);
+    gm.AddTexture("Player", SpaceShip);
     gm.AddTexture("Star", Star);
 
     Game ShootRock;
@@ -45,6 +45,8 @@ int main(void)
     {
         // Draw
         BeginDrawing();
+
+        ShootRock.Run();
 
         EndDrawing();
     }

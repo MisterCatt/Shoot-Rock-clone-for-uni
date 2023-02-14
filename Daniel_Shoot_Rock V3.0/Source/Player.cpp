@@ -14,7 +14,6 @@ Player* Player::GetInstance()
 }
 
 Player::Player() {
-	SetTexture("Assets/SpaceShip.png");
 	SetSpeed(10);
 
 	ui = UI::GetInstance();
@@ -27,17 +26,12 @@ Player::Player() {
 	noBullets = true;
 
 	anim = new ChargeUpAnimation(GetPosition());
-	chargeUpSound = LoadSound("Assets/ChargeSound.wav");
-	ShootSound = LoadSound("Assets/ShootSound.wav");
 }
 
 Player::~Player()
 {
 	delete anim;
 	anim = nullptr;
-
-	UnloadSound(chargeUpSound);
-	UnloadSound(ShootSound);
 }
 
 void Player::Render()
@@ -50,14 +44,8 @@ void Player::Render()
 	if (!IsActive())
 		return;
 
-	DrawTexturePro(
-		_Texture,
-		Rectangle{ 0.0f, 0.0f, (float)_Texture.width, (float)_Texture.height },
-		Rectangle{ _Position.x,_Position.y,
-		(float)_Texture.width, (float)_Texture.height },
-		Vector2{ (float)_Texture.width / 2, (float)_Texture.height / 2 },
-		GetAngle(),
-		WHITE);
+	gm.DrawTexture("SpaceShip",_Angle, (int)_Position.x, (int)_Position.y),
+
 
 	anim->Render();
 }
@@ -83,11 +71,11 @@ void Player::Update()
 void Player::Input()
 {
 	if (IsKeyDown(KEY_LEFT)) {
-		if (_Position.x > (0 + _Texture.width / 2))
+		if (_Position.x > (0 + gm.textures.at("SpaceShip").width / 2))
 			_Position.x -= _Speed;
 	}
 	if (IsKeyDown(KEY_RIGHT)) {
-		if (_Position.x < (GetScreenWidth() - _Texture.width / 2))
+		if (_Position.x < (GetScreenWidth() - gm.textures.at("SpaceShip").width / 2))
 			_Position.x += _Speed;
 	}
 
@@ -95,7 +83,7 @@ void Player::Input()
 		oldTime = GetTime();
 		anim->Charge();
 
-		PlaySoundMulti(chargeUpSound);
+		gm.PlaySound("Charge");
 
 		charging = true;
 	}
@@ -109,7 +97,7 @@ void Player::Input()
 		if (dif >= shootCoolDown) {
 			if(!isDead)
 			Shoot();
-			PlaySoundMulti(ShootSound);
+			gm.PlaySound("Shoot");
 		}
 	}
 	
@@ -181,4 +169,9 @@ void Player::Reset()
 
 	BulletBag.clear();
 	SpawnPlayer();
+}
+
+void Player::AddGameManager(GameManager& _gm)
+{
+	gm = _gm;
 }
